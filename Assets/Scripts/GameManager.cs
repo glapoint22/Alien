@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
     public static string playerID = "26c497007bbd5c0019f86b6c5fb161b1";
@@ -6,4 +7,7 @@ public class GameManager : MonoBehaviour {
     public static string key = "mviGtw1/fLj6eEc3mIo1w2NRCrDVZsMS4VGSMFTmMdc=";
     public static string iv = "7WMJTktvP4cDhdtThDK3LSu46y3DzksQ6Cj9+I2Bwxk=";
     public static string assetBundlesURL = "zorioth/AssetBundles/";
+    public static string[] assetBundles;
+    public static Dictionary<string, GameObject> assets = new Dictionary<string, GameObject>();
+    public static Dictionary<string, int> assetBundleVersion = new Dictionary<string, int>();
 }

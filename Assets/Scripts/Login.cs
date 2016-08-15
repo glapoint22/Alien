@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Text.RegularExpressions;
 using UnityEngine.UI;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
 
 public class Login : MonoBehaviour {
@@ -15,11 +14,8 @@ public class Login : MonoBehaviour {
     [SerializeField]
     private Toggle rememberAccountNameToggle;
 
-    private Prompt prompt;
-
-
-    //[SerializeField]
-    //private SceneLoader sceneLoader;
+    [SerializeField]
+    private SceneLoader sceneLoader;
 
 
     void Awake()
@@ -33,34 +29,12 @@ public class Login : MonoBehaviour {
     }
 
 
-    void Start()
-    {
-        //Initialize the prompt
-        prompt = Prompt.instance;
-        prompt.Initialize(Groups.Login);
-
-        //Set the color
-        UIGroups.SetColor(Groups.Prompt, 2, true);
-        UIGroups.SetColor(Groups.Login, 2, true);
-
-        //Fade in the login
-        StartCoroutine(UIGroups.FadeIn(Groups.Login, 0.5f));
-    }
-
     public void OnLoginClick()
     {
         //Check if account name is empty
         if(accountNameInputField.text == string.Empty)
         {
-            PromptInfo promptInfo = new PromptInfo
-            {
-                promptTitle = "Login",
-                promptDescription = "Please enter your account name.",
-                button1Text = "Ok",
-                button1Action = delegate {}
-            };
-
-            prompt.Show(promptInfo);
+            Debug.Log("Please enter your account name.");
             return;
         }
 
@@ -68,16 +42,7 @@ public class Login : MonoBehaviour {
         //Check if password is empty
         if (password.text == string.Empty)
         {
-            PromptInfo promptInfo = new PromptInfo
-            {
-                promptTitle = "Login",
-                promptDescription = "Please enter your password.",
-                button1Text = "Ok",
-                button1Action = delegate { }
-            };
-
-
-            prompt.Show(promptInfo);
+            Debug.Log("Please enter your password.");
             return;
         }
 
@@ -89,17 +54,7 @@ public class Login : MonoBehaviour {
         //If both account name and password are invalid, prompt an error
         if(!isAccountNameValid || !isPasswordValid)
         {
-            PromptInfo promptInfo = new PromptInfo
-            {
-                promptTitle = "Login",
-                promptDescription = "The account name or password you entered is invalid. Please enter a valid account name and password.",
-                button1Text = "Ok",
-                button1Action = delegate { }
-            };
-
-
-            prompt.Show(promptInfo);
-            return;
+            Debug.Log("The account name or password you entered is invalid. Please enter a valid account name and password.");
         }
         else
         {
@@ -158,12 +113,11 @@ public class Login : MonoBehaviour {
         //else, load the character creation screen
         if (numCharacters > 0)
         {
-            //StartCoroutine(sceneLoader.LoadScene(3));
-            SceneManager.LoadScene(2);
+            StartCoroutine(sceneLoader.LoadScene(3));
         }
         else
         {
-            //StartCoroutine(sceneLoader.LoadScene(2));
+            StartCoroutine(sceneLoader.LoadScene(2));
 
         }
         
@@ -184,14 +138,7 @@ public class Login : MonoBehaviour {
 
     void InvalidLogin()
     {
-        PromptInfo promptInfo = new PromptInfo
-        {
-            promptTitle = "Login",
-            promptDescription = "The information you have entered is invalid. Check the spelling of the account name and password.",
-            button1Text = "Ok",
-            button1Action = delegate { }
-        };
-
-        prompt.Show(promptInfo);
+        Debug.Log("The information you have entered is invalid. Check the spelling of the account name and password.");
     }
+
 }
