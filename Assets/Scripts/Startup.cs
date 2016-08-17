@@ -64,7 +64,10 @@ public class Startup : MonoBehaviour
             yield return request;
 
 
-            Instantiate((GameObject)request.asset);
+            Transform space = Instantiate((GameObject)request.asset).transform;
+
+            space.SetParent(GameObject.Find("Canvas").transform, false);
+            space.SetSiblingIndex(0);
 
 
             //Unload the current asset bundle
@@ -98,7 +101,9 @@ public class Startup : MonoBehaviour
         }
     }
 
-    IEnumerator GetAssetBundleVersions()
+    
+
+        IEnumerator GetAssetBundleVersions()
     {
         WWW www = new WWW(GameManager.phpURL + "Get_AssetBundles.php");
         yield return www;
