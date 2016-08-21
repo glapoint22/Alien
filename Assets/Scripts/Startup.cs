@@ -15,72 +15,38 @@ public class Startup : MonoBehaviour
     private Versions version;
 
     private Dictionary<string, int> assetBundleVersion = new Dictionary<string, int>();
+    private AssetBundleRequest request;
+    private AssetBundle bundle;
 
 
     IEnumerator Start()
     {
         if(version == Versions.Live)
         {
+            //Get all the asset bundle versions
             yield return GetAssetBundleVersions();
 
-
-
             //Progress bar
-            int version = assetBundleVersion["progressbar"];
-            WWW www = WWW.LoadFromCacheOrDownload(GameManager.assetBundlesURL + "progressbar", version);
-            yield return www;
-            if (!string.IsNullOrEmpty(www.error)) throw new Exception("WWW download had an error: " + www.error);
-
-
-            //Load all assets from this asset bundle
-            AssetBundle bundle = www.assetBundle;
-            AssetBundleRequest request = bundle.LoadAssetAsync("Progress Bar");
-            yield return request;
-
-
+            yield return GetGameObjectFromAssetBundle("progressbar", "Progress Bar");
             progressBar = Instantiate((GameObject)request.asset).transform.GetChild(1).GetComponent<ProgressBar>();
-
-
             progressBar.transform.root.SetParent(GameObject.Find("Canvas").transform, false);
-
-
+            
             //Unload the current asset bundle
             bundle.Unload(false);
-
-
-
 
 
             //Space
-            version = assetBundleVersion["space"];
-            www = WWW.LoadFromCacheOrDownload(GameManager.assetBundlesURL + "space", version);
-            yield return www;
-            if (!string.IsNullOrEmpty(www.error)) throw new Exception("WWW download had an error: " + www.error);
-
-
-            //Load all assets from this asset bundle
-            bundle = www.assetBundle;
-            request = bundle.LoadAssetAsync("Space");
-            yield return request;
-
-
+            yield return GetGameObjectFromAssetBundle("space", "Space");
             Transform space = Instantiate((GameObject)request.asset).transform;
-
             space.SetParent(GameObject.Find("Canvas").transform, false);
             space.SetSiblingIndex(0);
-
 
             //Unload the current asset bundle
             bundle.Unload(false);
 
-
-
-
-
-
-
+            
+            //Get the asset bundles that are new and need to be downloaded
             yield return GetAssetBundlesToDownload();
-
             if (assetBundlesToDownload.Count > 0)
             {
                 //Set the color of the progress bar
@@ -101,12 +67,25 @@ public class Startup : MonoBehaviour
         }
     }
 
-    
+    IEnumerator GetGameObjectFromAssetBundle(string assetBundleName, string GameObjectName)
+    {
+        int version = assetBundleVersion[assetBundleName];
+        WWW www = WWW.LoadFromCacheOrDownload(GameManager.assetBundlesURL + assetBundleName, version);
+        yield return www;
+        if (!string.IsNullOrEmpty(www.error)) throw new Exception("WWW download had an error: " + www.error);
 
-        IEnumerator GetAssetBundleVersions()
+
+        //Load all assets from this asset bundle
+        bundle = www.assetBundle;
+        request = bundle.LoadAssetAsync(GameObjectName);
+        yield return request;
+    }
+
+    IEnumerator GetAssetBundleVersions()
     {
         WWW www = new WWW(GameManager.phpURL + "Get_AssetBundles.php");
         yield return www;
+        if (!string.IsNullOrEmpty(www.error)) throw new Exception("WWW download had an error: " + www.error);
 
         //Decrypt
         string decryptData = Encryption.Decrypt(www.text);
