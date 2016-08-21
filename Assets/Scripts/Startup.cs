@@ -36,10 +36,8 @@ public class Startup : MonoBehaviour
 
 
             //Space
-            yield return GetGameObjectFromAssetBundle("space", "Space");
-            Transform space = Instantiate((GameObject)request.asset).transform;
-            space.SetParent(GameObject.Find("Canvas").transform, false);
-            space.SetSiblingIndex(0);
+            yield return GetGameObjectFromAssetBundle("space_background", "Space Background");
+            Instantiate((GameObject)request.asset);
 
             //Unload the current asset bundle
             bundle.Unload(false);
