@@ -136,4 +136,4 @@ public struct UIGroup
     public List<UIGraphic> elements;
 }
 
-public enum Groups { None, Startup, Login, Prompt }
+public enum Groups { None, ProgressBar, Login, Prompt }

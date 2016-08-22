@@ -1,6 +1,16 @@
 using UnityEngine.UI;
+using UnityEngine;
 
 public class ProgressBar : UIParent {
+    [SerializeField]
+    private Image progressImage;
+
+    [SerializeField]
+    private Text percent;
+
+    public Text description;
+    
+
     private float _progress;
 
     public float progress
@@ -8,13 +18,11 @@ public class ProgressBar : UIParent {
         set
         {
             _progress = value;
-
-            for(int i = 0; i < children.Length - 1; i++)
-            {
-                UIGraphic child = (UIGraphic)children[i];
-                Image image = (Image)child.graphic;
-                image.fillAmount = _progress;
-            }
+            progressImage.fillAmount = _progress;
+            percent.text = (System.Math.Round(_progress, 2) * 100) + "%";
         }
     }
+
+
+    
 }

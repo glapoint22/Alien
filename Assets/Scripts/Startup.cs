@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections;
 using System;
 using System.Collections.Generic;
-using UnityEngine.UI;
 
 
 public class Startup : MonoBehaviour
@@ -18,7 +17,6 @@ public class Startup : MonoBehaviour
     private AssetBundleRequest request;
     private AssetBundle bundle;
 
-
     IEnumerator Start()
     {
         if(version == Versions.Live)
@@ -28,8 +26,8 @@ public class Startup : MonoBehaviour
 
             //Progress bar
             yield return GetGameObjectFromAssetBundle("progressbar", "Progress Bar");
-            progressBar = Instantiate((GameObject)request.asset).transform.GetChild(1).GetComponent<ProgressBar>();
-            progressBar.transform.root.SetParent(GameObject.Find("Canvas").transform, false);
+            progressBar = Instantiate((GameObject)request.asset).transform.GetComponent<ProgressBar>();
+            progressBar.transform.SetParent(GameObject.Find("Canvas").transform, false);
             
             //Unload the current asset bundle
             bundle.Unload(false);
@@ -42,16 +40,15 @@ public class Startup : MonoBehaviour
             //Unload the current asset bundle
             bundle.Unload(false);
 
-            
-            //Get the asset bundles that are new and need to be downloaded
+            //Get the asset bundles that need to be downloaded
             yield return GetAssetBundlesToDownload();
             if (assetBundlesToDownload.Count > 0)
             {
                 //Set the color of the progress bar
-                UIGroups.SetColor(Groups.Startup, 2, true);
+                UIGroups.SetColor(Groups.ProgressBar, 2, true);
 
                 //Fade in the progress bar
-                yield return UIGroups.FadeIn(Groups.Startup, 0.5f);
+                yield return UIGroups.FadeIn(Groups.ProgressBar, 0.5f);
 
                 //Download the asset bundles
                 yield return DownloadAssetBundles();
@@ -60,7 +57,7 @@ public class Startup : MonoBehaviour
                 yield return new WaitForSeconds(1);
 
                 //Fade out the progress bar
-                yield return UIGroups.FadeOut(Groups.Startup, 0, 0.5f);
+                yield return UIGroups.FadeOut(Groups.ProgressBar, 0, 0.5f);
             }
         }
     }
@@ -98,7 +95,6 @@ public class Startup : MonoBehaviour
 
     }
 
-
     IEnumerator GetAssetBundlesToDownload()
     {
         string[] assetBundles;
@@ -128,22 +124,14 @@ public class Startup : MonoBehaviour
         }
     }
 
-
-
     IEnumerator DownloadAssetBundles()
     {
         //Loop through all the assetbundles that need to be downloaded
         float totalProgress = 0;
         for (int i = 0; i < assetBundlesToDownload.Count; i++)
         {
-            //Get the assetBundle name
-            int startIndex = assetBundlesToDownload[i].IndexOf("/") + 1;
-            string assetBundleName = assetBundlesToDownload[i].Substring(startIndex).Replace("_", " ");
-
             //Display which assetBundle is being downloaded
-            UIGraphic uiGraphic = (UIGraphic)progressBar.children[4];
-            Text info = (Text)uiGraphic.graphic;
-            info.text = "Downloading " + assetBundleName;
+            progressBar.description.text = "Downloading " + assetBundlesToDownload[i];
 
 
             //Download the current assetBundle and display the progress
@@ -152,9 +140,8 @@ public class Startup : MonoBehaviour
             while (!www.isDone)
             {
                 totalProgress += www.progress;
-
                 progressBar.progress = totalProgress / assetBundlesToDownload.Count;
-
+                
                 yield return www;
             }
 
