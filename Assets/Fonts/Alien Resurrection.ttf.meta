@@ -3,13 +3,14 @@ guid: b1994e4854d69eb4fa56157a5ced52d5
 timeCreated: 1469404426
 licenseType: Free
 TrueTypeFontImporter:
-  serializedVersion: 3
+  serializedVersion: 4
   fontSize: 16
   forceTextureCase: -2
-  characterSpacing: 1
-  characterPadding: 0
+  characterSpacing: 0
+  characterPadding: 1
   includeFontData: 1
-  fontNames: []
+  fontNames:
+  - Alien Resurrection
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

@@ -17,11 +17,6 @@ public class Login : MonoBehaviour {
 
     private Prompt prompt;
 
-
-    //[SerializeField]
-    //private SceneLoader sceneLoader;
-
-
     void Awake()
     {
         //Is the remember account toggle on or off?

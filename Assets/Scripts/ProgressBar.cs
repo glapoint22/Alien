@@ -22,7 +22,4 @@ public class ProgressBar : UIParent {
             percent.text = (System.Math.Round(_progress, 2) * 100) + "%";
         }
     }
-
-
-    
 }
