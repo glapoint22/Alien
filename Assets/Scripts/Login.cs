@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 
 public class Login : MonoBehaviour {
@@ -16,6 +17,10 @@ public class Login : MonoBehaviour {
     private Toggle rememberAccountNameToggle;
 
     private Prompt prompt;
+
+    public EventSystem system;
+    private Selectable next = null;
+
 
     void Awake()
     {
@@ -40,6 +45,12 @@ public class Login : MonoBehaviour {
 
         //Fade in the login
         StartCoroutine(UIGroups.FadeIn(Groups.Login, 0.5f));
+
+        system = EventSystem.current;
+
+        //Give the account inputfield the focus
+        GameObject accountInputField = GameObject.Find("Account InputField");
+        system.SetSelectedGameObject(accountInputField, new BaseEventData(system));
     }
 
     public void OnLoginClick()
@@ -188,5 +199,22 @@ public class Login : MonoBehaviour {
         };
 
         prompt.Show(promptInfo);
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            {
+                next = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnUp();
+                system.SetSelectedGameObject(next.gameObject, new BaseEventData(system));
+            }
+            else
+            {
+                next = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown();
+                system.SetSelectedGameObject(next.gameObject, new BaseEventData(system));
+            }
+        }
     }
 }
