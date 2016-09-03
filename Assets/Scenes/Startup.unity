@@ -360,6 +360,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 515103bdecd76ce4e9f319551f86bef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spaceBackgroundPrefab: {fileID: 1000011539473184, guid: 2afdae7c860d3ad4b809a4a080fec04c,
+    type: 2}
+  version: 0
 --- !u!4 &1443732501
 Transform:
   m_ObjectHideFlags: 0
