@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - 224: {fileID: 22471160}
   - 222: {fileID: 22233086}
-  - 114: {fileID: 11472914}
+  - 114: {fileID: 114000010328138874}
   - 114: {fileID: 11420104}
   m_Layer: 5
   m_Name: InputField
@@ -28,7 +28,7 @@ GameObject:
   - 224: {fileID: 22488164}
   - 222: {fileID: 22281868}
   - 114: {fileID: 11407440}
-  - 114: {fileID: 11431566}
+  - 114: {fileID: 114000012180279624}
   m_Layer: 5
   m_Name: Stroke
   m_TagString: Untagged
@@ -46,7 +46,7 @@ GameObject:
   - 224: {fileID: 22462896}
   - 222: {fileID: 22247240}
   - 114: {fileID: 11484102}
-  - 114: {fileID: 11477528}
+  - 114: {fileID: 114000012826686672}
   m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
@@ -64,7 +64,7 @@ GameObject:
   - 224: {fileID: 22403020}
   - 222: {fileID: 22291194}
   - 114: {fileID: 11407892}
-  - 114: {fileID: 11453202}
+  - 114: {fileID: 114000010908278148}
   m_Layer: 5
   m_Name: Gradient
   m_TagString: Untagged
@@ -82,7 +82,7 @@ GameObject:
   - 224: {fileID: 22404010}
   - 222: {fileID: 22260982}
   - 114: {fileID: 11449764}
-  - 114: {fileID: 11454670}
+  - 114: {fileID: 114000013649356158}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -207,20 +207,6 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
---- !u!114 &11431566
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 142170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26a8bdcbbbe071e418f34beb7e3a868e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  graphic: {fileID: 11407440}
-  colorIndex: 0
-  alpha: 0.37
 --- !u!114 &11449764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -254,65 +240,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
---- !u!114 &11453202
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 188754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26a8bdcbbbe071e418f34beb7e3a868e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  graphic: {fileID: 11407892}
-  colorIndex: 1
-  alpha: 0.17
---- !u!114 &11454670
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 191730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26a8bdcbbbe071e418f34beb7e3a868e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  graphic: {fileID: 11449764}
-  colorIndex: 1
-  alpha: 0.7
---- !u!114 &11472914
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 114654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2237b81e3e759e14a8013dc04bb4cead, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  group: 0
-  children:
-  - {fileID: 11477528}
-  - {fileID: 11431566}
-  - {fileID: 11454670}
-  - {fileID: 11453202}
---- !u!114 &11477528
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 160124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26a8bdcbbbe071e418f34beb7e3a868e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  graphic: {fileID: 11484102}
-  colorIndex: 0
-  alpha: 0.17
 --- !u!114 &11484102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -326,7 +253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -475,3 +402,92 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 114654}
   m_IsPrefabParent: 1
+--- !u!114 &114000010328138874
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9adcd35ba2747354eab982939a6fe068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group: 2
+  children:
+  - {fileID: 114000012180279624}
+  - {fileID: 114000012826686672}
+  - {fileID: 114000010908278148}
+  - {fileID: 114000013649356158}
+--- !u!114 &114000010908278148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 188754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52eddf64d0829b4f89dd0cd70ee5b11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  graphic: {fileID: 11407892}
+  colorIndex: 1
+  alpha: 0.17
+  overAlpha: 0.17
+  downAlpha: 0.17
+  upAlpha: 0.17
+  selectAlpha: 0.17
+--- !u!114 &114000012180279624
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 142170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52eddf64d0829b4f89dd0cd70ee5b11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  graphic: {fileID: 11407440}
+  colorIndex: 0
+  alpha: 0.37
+  overAlpha: 0.37
+  downAlpha: 1
+  upAlpha: 0.37
+  selectAlpha: 1
+--- !u!114 &114000012826686672
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52eddf64d0829b4f89dd0cd70ee5b11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  graphic: {fileID: 11484102}
+  colorIndex: 0
+  alpha: 0.17
+  overAlpha: 0.17
+  downAlpha: 0.17
+  upAlpha: 0.17
+  selectAlpha: 0.17
+--- !u!114 &114000013649356158
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52eddf64d0829b4f89dd0cd70ee5b11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  graphic: {fileID: 11449764}
+  colorIndex: 1
+  alpha: 0.7
+  overAlpha: 0.7
+  downAlpha: 0.7
+  upAlpha: 0.7
+  selectAlpha: 0.7

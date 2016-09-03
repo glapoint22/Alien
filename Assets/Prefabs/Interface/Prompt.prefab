@@ -848,7 +848,7 @@ MonoBehaviour:
   colorIndex: 1
   alpha: 0.6
   overAlpha: 0.8
-  downAlpha: 1
+  downAlpha: 0
   upAlpha: 0.8
 --- !u!114 &11408458
 MonoBehaviour:
@@ -1765,7 +1765,7 @@ MonoBehaviour:
   colorIndex: 0
   alpha: 0
   overAlpha: 0.5
-  downAlpha: 0.7
+  downAlpha: 0
   upAlpha: 0.5
 --- !u!114 &11465560
 MonoBehaviour:
@@ -1898,7 +1898,7 @@ MonoBehaviour:
   colorIndex: 2
   alpha: 0.3
   overAlpha: 0.4
-  downAlpha: 0.5
+  downAlpha: 0
   upAlpha: 0.4
 --- !u!114 &11475796
 MonoBehaviour:
@@ -1915,7 +1915,7 @@ MonoBehaviour:
   colorIndex: 0
   alpha: 0
   overAlpha: 0.5
-  downAlpha: 0.7
+  downAlpha: 0
   upAlpha: 0.5
 --- !u!114 &11476314
 MonoBehaviour:
@@ -2042,7 +2042,7 @@ MonoBehaviour:
   colorIndex: 0
   alpha: 0
   overAlpha: 0.5
-  downAlpha: 0.7
+  downAlpha: 0
   upAlpha: 0.5
 --- !u!114 &11482760
 MonoBehaviour:
