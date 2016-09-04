@@ -1,33 +1,79 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections;
 
 public class Scene : MonoBehaviour {
     public EventSystem system;
-    private Selectable next = null;
+    public Prompt prompt;
 
-    public void SetFocus(GameObject focusGameObject)
+    public static Selectable currentSelectedGameObject = null;
+
+    public IEnumerator SetScene(Groups sceneGroup, int colorIndex, GameObject focusGameObject)
     {
+        //Initialize the prompt
+        prompt = Prompt.instance;
+        prompt.Initialize(sceneGroup);
+        UIGroups.SetColor(Groups.Prompt, colorIndex, true);
+
+        //Fade in the scene
+        UIGroups.SetColor(sceneGroup, colorIndex, true);
+        yield return UIGroups.FadeIn(sceneGroup, 0.5f);
+
+
+        //Set the event system
         system = EventSystem.current;
-        system.SetSelectedGameObject(focusGameObject, new BaseEventData(system));
+        currentSelectedGameObject = focusGameObject.GetComponent<Selectable>();
+        SelectGameObject();
     }
 
 
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if(Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            currentSelectedGameObject.gameObject.GetComponent<UIEvent>().OnGameObjectDeselect();
+            //Tab
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
-                next = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnUp();
-                system.SetSelectedGameObject(next.gameObject, new BaseEventData(system));
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                {
+                    currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnUp();
+                }
+                else
+                {
+                    currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown();
+                }
+            //Down arrorw
             }
-            else
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                next = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown();
-                system.SetSelectedGameObject(next.gameObject, new BaseEventData(system));
+                currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown();
             }
+            //Up arrorw
+            else if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnUp();
+            }
+            //Left arrorw
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnLeft();
+            }
+            //Left arrorw
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnRight();
+            }
+            SelectGameObject();
         }
+    }
+
+
+    void SelectGameObject()
+    {
+        system.SetSelectedGameObject(currentSelectedGameObject.gameObject, new BaseEventData(system));
+        currentSelectedGameObject.GetComponent<UIEvent>().OnGameObjectSelect();
     }
 }

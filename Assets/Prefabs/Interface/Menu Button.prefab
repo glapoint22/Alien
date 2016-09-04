@@ -214,6 +214,7 @@ MonoBehaviour:
   overAlpha: 0.5
   downAlpha: 0.6
   upAlpha: 0.5
+  selectAlpha: 0.6
 --- !u!114 &114000011194190652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -231,6 +232,7 @@ MonoBehaviour:
   overAlpha: 0.8
   downAlpha: 0.9
   upAlpha: 0.8
+  selectAlpha: 1
 --- !u!114 &114000011215700742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -275,6 +277,7 @@ MonoBehaviour:
   overAlpha: 0.3
   downAlpha: 0.4
   upAlpha: 0.3
+  selectAlpha: 0.3
 --- !u!114 &114000011531355652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -319,6 +322,7 @@ MonoBehaviour:
   overAlpha: 0.47
   downAlpha: 0.57
   upAlpha: 0.47
+  selectAlpha: 1
 --- !u!114 &114000011757035726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -422,6 +426,7 @@ MonoBehaviour:
   overAlpha: 0.37
   downAlpha: 0.47
   upAlpha: 0.37
+  selectAlpha: 0.47
 --- !u!222 &222000010061009036
 CanvasRenderer:
   m_ObjectHideFlags: 1

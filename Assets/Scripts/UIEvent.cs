@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public abstract class UIEvent : UIParent, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
@@ -39,6 +40,11 @@ public abstract class UIEvent : UIParent, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        //Deselect the previous game object that had the focus
+        Scene.currentSelectedGameObject.gameObject.GetComponent<UIEvent>().OnGameObjectDeselect();
+
+        //Assign the current game object as the current selected game object
+        Scene.currentSelectedGameObject = gameObject.GetComponent<Selectable>();
         down = true;
 
         for (int i = 0; i < children.Length; i++)
@@ -78,6 +84,29 @@ public abstract class UIEvent : UIParent, IPointerEnterHandler, IPointerExitHand
         }
     }
 
+
+    public void OnGameObjectSelect()
+    {
+        down = true;
+
+        for (int i = 0; i < children.Length; i++)
+        {
+            OnSelect((UIInteractiveGraphic)children[i]);
+        }
+    }
+
+
+    public void OnGameObjectDeselect()
+    {
+        down = false;
+
+        for (int i = 0; i < children.Length; i++)
+        {
+            OnDeselect((UIInteractiveGraphic)children[i]);
+        }
+    }
+
+
     public abstract void OnOver(UIInteractiveGraphic child);
 
     public abstract void OnOut(UIInteractiveGraphic child);
@@ -87,4 +116,8 @@ public abstract class UIEvent : UIParent, IPointerEnterHandler, IPointerExitHand
     public abstract void OnUp(UIInteractiveGraphic child);
 
     public abstract void OnOutside(UIInteractiveGraphic child);
+
+    public abstract void OnSelect(UIInteractiveGraphic child);
+
+    public abstract void OnDeselect(UIInteractiveGraphic child);
 }

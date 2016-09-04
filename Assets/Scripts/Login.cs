@@ -16,11 +16,6 @@ public class Login : Scene {
     [SerializeField]
     private Toggle rememberAccountNameToggle;
 
-    private Prompt prompt;
-
-    
-    
-
 
     void Awake()
     {
@@ -32,22 +27,9 @@ public class Login : Scene {
         if(rememberAccount) accountNameInputField.text = PlayerPrefs.GetString("AccountName");
     }
 
-
     void Start()
     {
-        //Initialize the prompt
-        prompt = Prompt.instance;
-        prompt.Initialize(Groups.Login);
-
-        //Set the color
-        UIGroups.SetColor(Groups.Prompt, 2, true);
-        UIGroups.SetColor(Groups.Login, 2, true);
-
-        //Fade in the login
-        StartCoroutine(UIGroups.FadeIn(Groups.Login, 0.5f));
-
-        SetFocus(GameObject.Find("Account InputField"));
-        
+        StartCoroutine(SetScene(Groups.Login, 2, GameObject.Find("Account InputField")));
     }
 
     public void OnLoginClick()
