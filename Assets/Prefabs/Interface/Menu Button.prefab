@@ -271,10 +271,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   graphic: {fileID: 114000011757035726}
   colorIndex: 0
-  alpha: 0.3
-  overAlpha: 0.4
-  downAlpha: 0.5
-  upAlpha: 0.4
+  alpha: 0.2
+  overAlpha: 0.3
+  downAlpha: 0.4
+  upAlpha: 0.3
 --- !u!114 &114000011531355652
 MonoBehaviour:
   m_ObjectHideFlags: 1

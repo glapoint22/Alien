@@ -141,7 +141,7 @@ MonoBehaviour:
   colorIndex: 2
   alpha: 0.3
   overAlpha: 0.4
-  selectAlpha: 0.7
+  downAlpha: 0
   upAlpha: 0.4
 --- !u!114 &98993247
 MonoBehaviour:
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_SelectOnUp: {fileID: 323728834}
+    m_SelectOnUp: {fileID: 1385357034}
     m_SelectOnDown: {fileID: 968479932}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
@@ -404,11 +404,16 @@ Prefab:
     - target: {fileID: 11420104, guid: b0186dc535006e24988b7976e4b89280, type: 2}
       propertyPath: m_Navigation.m_SelectOnDown
       value: 
-      objectReference: {fileID: 111983480}
+      objectReference: {fileID: 1385357034}
     - target: {fileID: 114000012902697328, guid: b0186dc535006e24988b7976e4b89280,
         type: 2}
       propertyPath: group
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012180279624, guid: b0186dc535006e24988b7976e4b89280,
+        type: 2}
+      propertyPath: overAlpha
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0186dc535006e24988b7976e4b89280, type: 2}
@@ -873,10 +878,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93a4a7566d4a2f14c821a1ba6627f089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  system: {fileID: 0}
   accountNameInputField: {fileID: 968479932}
   password: {fileID: 323728834}
   rememberAccountNameToggle: {fileID: 111983480}
-  system: {fileID: 0}
 --- !u!4 &860742825
 Transform:
   m_ObjectHideFlags: 0
@@ -1558,9 +1563,27 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnLoginClick
       objectReference: {fileID: 0}
+    - target: {fileID: 11471934, guid: 7488423dbd250fd44ad417a8f92a69a6, type: 2}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11471934, guid: 7488423dbd250fd44ad417a8f92a69a6, type: 2}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 323728834}
+    - target: {fileID: 11471934, guid: 7488423dbd250fd44ad417a8f92a69a6, type: 2}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 111983480}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7488423dbd250fd44ad417a8f92a69a6, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1385357034 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11471934, guid: 7488423dbd250fd44ad417a8f92a69a6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1385357033}
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &1426595538
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,7 +1668,7 @@ MonoBehaviour:
   colorIndex: 2
   alpha: 0.8
   overAlpha: 0.9
-  selectAlpha: 1
+  downAlpha: 0
   upAlpha: 0.9
 --- !u!1001 &1458901117
 Prefab:
@@ -2037,7 +2060,7 @@ MonoBehaviour:
   colorIndex: 1
   alpha: 0.8
   overAlpha: 0.9
-  selectAlpha: 1
+  downAlpha: 0
   upAlpha: 0.9
 --- !u!1 &1593365873
 GameObject:
@@ -2179,7 +2202,7 @@ MonoBehaviour:
   colorIndex: 0
   alpha: 0.6
   overAlpha: 0.7
-  selectAlpha: 1
+  downAlpha: 0
   upAlpha: 0.7
 --- !u!1 &1978473773
 GameObject:
@@ -2232,7 +2255,7 @@ MonoBehaviour:
   colorIndex: 2
   alpha: 0
   overAlpha: 0
-  selectAlpha: 0
+  downAlpha: 0
   upAlpha: 0
 --- !u!114 &1978473776
 MonoBehaviour:
