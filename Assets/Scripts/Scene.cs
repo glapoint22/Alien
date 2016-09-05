@@ -1,35 +1,34 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using System.Collections;
 
 public class Scene : MonoBehaviour {
     public EventSystem system;
     public Prompt prompt;
 
-    public static Selectable currentSelectedGameObject = null;
+    public static GameObject currentSelectedGameObject = null;
 
 
     private bool sixthAxisPressed;
     private bool seventhAxisPressed;
 
 
-    public IEnumerator SetScene(Groups sceneGroup, int colorIndex, GameObject focusGameObject)
+    public void SetScene(Groups sceneGroup, int colorIndex, GameObject focusGameObject)
     {
         //Initialize the prompt
         prompt = Prompt.instance;
         prompt.Initialize(sceneGroup);
         UIGroups.SetColor(Groups.Prompt, colorIndex, true);
 
-        //Fade in the scene
-        UIGroups.SetColor(sceneGroup, colorIndex, true);
-        yield return UIGroups.FadeIn(sceneGroup, 0.5f);
-
 
         //Set the event system
         system = EventSystem.current;
-        currentSelectedGameObject = focusGameObject.GetComponent<Selectable>();
-        SelectGameObject();
+        currentSelectedGameObject = focusGameObject.GetComponent<Selectable>().gameObject;
+        system.SetSelectedGameObject(currentSelectedGameObject.gameObject, new BaseEventData(system));
+
+        //Fade in the scene
+        UIGroups.SetColor(sceneGroup, colorIndex, true);
+        StartCoroutine(UIGroups.FadeIn(sceneGroup, 0.5f));
     }
 
 
@@ -57,36 +56,36 @@ public class Scene : MonoBehaviour {
             {
                 if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                 {
-                    currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnUp();
+                    currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnUp().gameObject;
                 }
                 else
                 {
-                    currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown();
+                    currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown().gameObject;
                 }
 
             //Down arrorw
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown();
+                currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown().gameObject;
             }
 
             //Up arrorw
             else if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnUp();
+                currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnUp().gameObject;
             }
 
             //Left arrorw
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnLeft();
+                currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnLeft().gameObject;
             }
 
             //Right arrorw
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnRight();
+                currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnRight().gameObject;
             }
 
             //6th Axis Left
@@ -95,7 +94,7 @@ public class Scene : MonoBehaviour {
                 if (!sixthAxisPressed)
                 {
                     sixthAxisPressed = true;
-                    currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnLeft();
+                    currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnLeft().gameObject;
                 }
             }
 
@@ -105,7 +104,7 @@ public class Scene : MonoBehaviour {
                 if (!sixthAxisPressed)
                 {
                     sixthAxisPressed = true;
-                    currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnRight();
+                    currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnRight().gameObject;
                 }
             }
 
@@ -115,7 +114,7 @@ public class Scene : MonoBehaviour {
                 if (!seventhAxisPressed)
                 {
                     seventhAxisPressed = true;
-                    currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnUp();
+                    currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnUp().gameObject;
                 }
             }
 
@@ -125,7 +124,7 @@ public class Scene : MonoBehaviour {
                 if (!seventhAxisPressed)
                 {
                     seventhAxisPressed = true;
-                    currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown();
+                    currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown().gameObject;
                 }
             }
 
@@ -138,7 +137,7 @@ public class Scene : MonoBehaviour {
 
     void SelectGameObject()
     {
-        system.SetSelectedGameObject(currentSelectedGameObject.gameObject, new BaseEventData(system));
+        system.SetSelectedGameObject(currentSelectedGameObject, new BaseEventData(system));
         currentSelectedGameObject.GetComponent<UIEvent>().OnGameObjectSelect();
     }
 }

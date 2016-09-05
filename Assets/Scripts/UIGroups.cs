@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.UI;
 
 public class UIGroups : UI
 {
@@ -63,6 +64,9 @@ public class UIGroups : UI
         float[] maxAlpha = new float[elementCount];
         float currentAlpha;
 
+
+        
+
         while (time < fadeTime)
         {
             time += 1 * Time.deltaTime;
@@ -73,9 +77,24 @@ public class UIGroups : UI
                 //Calcualte the speed and get the max alpha for this element
                 if (speed[i] == 0)
                 {
-                    maxAlpha[i] = direction == -1 ? 1 : uiGroup[index].elements[i].alpha;
-                    float distance;
+                    //Test to see which alpha we are using. Select alpha(if the gameobject is selected) or normal alpha
+                    GameObject elementGameObject = uiGroup[index].elements[i].gameObject.transform.parent.gameObject;
+                    float alpha;
 
+                    if(elementGameObject == Scene.currentSelectedGameObject)
+                    {
+                        UIInteractiveGraphic element = (UIInteractiveGraphic)uiGroup[index].elements[i];
+                        alpha = element.selectAlpha;
+                    }
+                    else
+                    {
+                        alpha = uiGroup[index].elements[i].alpha;
+                    }
+                    maxAlpha[i] = direction == -1 ? 1 : alpha;
+
+
+                    //Get the distance between the current alpha and the alpha we need to get to
+                    float distance;
                     if (direction == 1)
                     {
                         distance = maxAlpha[i] - uiGroup[index].elements[i].graphic.color.a;
@@ -84,6 +103,8 @@ public class UIGroups : UI
                     {
                         distance = uiGroup[index].elements[i].graphic.color.a - minAlpha;
                     }
+
+                    //Calculate the speed
                     speed[i] = distance / fadeTime;
                 }
 

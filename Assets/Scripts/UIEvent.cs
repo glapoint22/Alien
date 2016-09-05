@@ -44,7 +44,7 @@ public abstract class UIEvent : UIParent, IPointerEnterHandler, IPointerExitHand
         Scene.currentSelectedGameObject.gameObject.GetComponent<UIEvent>().OnGameObjectDeselect();
 
         //Assign the current game object as the current selected game object
-        Scene.currentSelectedGameObject = gameObject.GetComponent<Selectable>();
+        Scene.currentSelectedGameObject = gameObject.GetComponent<Selectable>().gameObject;
         down = true;
 
         for (int i = 0; i < children.Length; i++)

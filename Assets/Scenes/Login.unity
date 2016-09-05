@@ -729,7 +729,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000012629298352, guid: 464a8b1452ab4b740b34b5e0ec537cda, type: 2}
       propertyPath: m_Name
-      value: Menu Button (1)
+      value: Options Menu Button
       objectReference: {fileID: 0}
     - target: {fileID: 114000013942704534, guid: 464a8b1452ab4b740b34b5e0ec537cda,
         type: 2}
@@ -1269,6 +1269,10 @@ Prefab:
       propertyPath: m_Navigation.m_SelectOnRight
       value: 
       objectReference: {fileID: 715024254}
+    - target: {fileID: 1000012629298352, guid: 464a8b1452ab4b740b34b5e0ec537cda, type: 2}
+      propertyPath: m_Name
+      value: Account Menu Button
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 464a8b1452ab4b740b34b5e0ec537cda, type: 2}
   m_IsPrefabParent: 0
@@ -1637,7 +1641,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000012629298352, guid: 464a8b1452ab4b740b34b5e0ec537cda, type: 2}
       propertyPath: m_Name
-      value: Menu Button (2)
+      value: Quit Menu Button
       objectReference: {fileID: 0}
     - target: {fileID: 114000013942704534, guid: 464a8b1452ab4b740b34b5e0ec537cda,
         type: 2}

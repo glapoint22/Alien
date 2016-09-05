@@ -8,7 +8,11 @@ public class UIParent : UI
     {
         for (int i = 0; i < children.Length; i++)
         {
-            UIGroups.uiGroup[(int)group].elements.Add((UIGraphic)children[i]);
+            if(UIGroups.uiGroup[(int)group].elements != null)
+            {
+                UIGroups.uiGroup[(int)group].elements.Add((UIGraphic)children[i]);
+            }
+            
         }
     }
 }

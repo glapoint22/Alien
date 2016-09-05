@@ -19,6 +19,13 @@ public class Login : Scene {
 
     void Awake()
     {
+        //Load the startup scene if we are trying to start the game with this scene
+        if (UIGroups.uiGroup[0].elements == null)
+        {
+            SceneManager.LoadScene(0);
+            return;
+        }
+
         //Is the remember account toggle on or off?
         bool rememberAccount = System.Convert.ToBoolean(PlayerPrefs.GetInt("RememberAccount"));
         rememberAccountNameToggle.isOn = rememberAccount;
@@ -29,7 +36,7 @@ public class Login : Scene {
 
     void Start()
     {
-        StartCoroutine(SetScene(Groups.Login, 2, GameObject.Find("Account InputField")));
+        SetScene(Groups.Login, 2, GameObject.Find("Account InputField"));
     }
 
     public void OnLoginClick()
