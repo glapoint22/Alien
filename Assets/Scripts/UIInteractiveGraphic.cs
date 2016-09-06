@@ -4,4 +4,5 @@ public class UIInteractiveGraphic : UIGraphic
     public float downAlpha;
     public float upAlpha;
     public float selectAlpha;
+    public float disabledAlpha;
 }

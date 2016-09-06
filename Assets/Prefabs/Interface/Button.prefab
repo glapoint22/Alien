@@ -12,7 +12,7 @@ GameObject:
   - 114: {fileID: 11471934}
   m_Layer: 5
   m_Name: Button
-  m_TagString: Untagged
+  m_TagString: UIButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,6 +152,7 @@ MonoBehaviour:
   downAlpha: 0.6
   upAlpha: 0.5
   selectAlpha: 0.6
+  disabledAlpha: 0.1
 --- !u!114 &11445128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -170,6 +171,7 @@ MonoBehaviour:
   downAlpha: 0.6
   upAlpha: 0.5
   selectAlpha: 0.6
+  disabledAlpha: 0.1
 --- !u!114 &11450260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -215,6 +217,7 @@ MonoBehaviour:
   - {fileID: 11465350}
   - {fileID: 11419684}
   - {fileID: 11491908}
+  button: {fileID: 11471934}
 --- !u!114 &11460096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -260,6 +263,7 @@ MonoBehaviour:
   downAlpha: 0.57
   upAlpha: 0.47
   selectAlpha: 1
+  disabledAlpha: 0.1
 --- !u!114 &11471934
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -363,6 +367,7 @@ MonoBehaviour:
   downAlpha: 0.4
   upAlpha: 0.3
   selectAlpha: 0.3
+  disabledAlpha: 0.05
 --- !u!114 &11491410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -408,6 +413,7 @@ MonoBehaviour:
   downAlpha: 0.6
   upAlpha: 0.5
   selectAlpha: 1
+  disabledAlpha: 0.1
 --- !u!222 &22208430
 CanvasRenderer:
   m_ObjectHideFlags: 1

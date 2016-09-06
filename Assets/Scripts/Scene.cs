@@ -11,6 +11,7 @@ public class Scene : MonoBehaviour {
 
     private bool sixthAxisPressed;
     private bool seventhAxisPressed;
+    private enum SelectableDirection { Down, Up, Left, Right }
 
 
     public void SetScene(Groups sceneGroup, int colorIndex, GameObject focusGameObject)
@@ -25,6 +26,7 @@ public class Scene : MonoBehaviour {
         system = EventSystem.current;
         currentSelectedGameObject = focusGameObject.GetComponent<Selectable>().gameObject;
         system.SetSelectedGameObject(currentSelectedGameObject.gameObject, new BaseEventData(system));
+        currentSelectedGameObject.GetComponent<UIEvent>().down = true;
 
         //Fade in the scene
         UIGroups.SetColor(sceneGroup, colorIndex, true);
@@ -56,36 +58,36 @@ public class Scene : MonoBehaviour {
             {
                 if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                 {
-                    currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnUp().gameObject;
+                    SetSelectableGameObject(SelectableDirection.Up);
                 }
                 else
                 {
-                    currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown().gameObject;
+                    SetSelectableGameObject(SelectableDirection.Down);
                 }
 
             //Down arrorw
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown().gameObject;
+                SetSelectableGameObject(SelectableDirection.Down);
             }
 
             //Up arrorw
             else if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnUp().gameObject;
+                SetSelectableGameObject(SelectableDirection.Up);
             }
 
             //Left arrorw
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnLeft().gameObject;
+                SetSelectableGameObject(SelectableDirection.Left);
             }
 
             //Right arrorw
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnRight().gameObject;
+                SetSelectableGameObject(SelectableDirection.Right);
             }
 
             //6th Axis Left
@@ -94,7 +96,7 @@ public class Scene : MonoBehaviour {
                 if (!sixthAxisPressed)
                 {
                     sixthAxisPressed = true;
-                    currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnLeft().gameObject;
+                    SetSelectableGameObject(SelectableDirection.Left);
                 }
             }
 
@@ -104,7 +106,7 @@ public class Scene : MonoBehaviour {
                 if (!sixthAxisPressed)
                 {
                     sixthAxisPressed = true;
-                    currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnRight().gameObject;
+                    SetSelectableGameObject(SelectableDirection.Right);
                 }
             }
 
@@ -114,7 +116,7 @@ public class Scene : MonoBehaviour {
                 if (!seventhAxisPressed)
                 {
                     seventhAxisPressed = true;
-                    currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnUp().gameObject;
+                    SetSelectableGameObject(SelectableDirection.Up);
                 }
             }
 
@@ -124,20 +126,59 @@ public class Scene : MonoBehaviour {
                 if (!seventhAxisPressed)
                 {
                     seventhAxisPressed = true;
-                    currentSelectedGameObject = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown().gameObject;
+                    SetSelectableGameObject(SelectableDirection.Down);
                 }
             }
-
-
-
-            SelectGameObject();
+            SetSelectedGameObject();
         }
     }
 
 
-    void SelectGameObject()
+    void SetSelectedGameObject()
     {
         system.SetSelectedGameObject(currentSelectedGameObject, new BaseEventData(system));
         currentSelectedGameObject.GetComponent<UIEvent>().OnGameObjectSelect();
+    }
+
+    private void SetSelectableGameObject(SelectableDirection selectableDirection)
+    {
+        Selectable currentSelected = GetCurrentSelected(selectableDirection);
+
+        if (currentSelected.interactable)
+        {
+            currentSelectedGameObject = currentSelected.gameObject;
+        }
+        else
+        {
+            while (!currentSelected.interactable)
+            {
+                system.SetSelectedGameObject(currentSelected.gameObject, new BaseEventData(system));
+                currentSelected = GetCurrentSelected(selectableDirection);
+            }
+            currentSelectedGameObject = currentSelected.gameObject;
+        }
+    }
+
+
+    private Selectable GetCurrentSelected(SelectableDirection selectableDirection)
+    {
+        Selectable selected = null;
+
+        switch (selectableDirection)
+        {
+            case SelectableDirection.Down:
+                selected = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown();
+                break;
+            case SelectableDirection.Up:
+                selected = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnUp();
+                break;
+            case SelectableDirection.Left:
+                selected = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnLeft();
+                break;
+            case SelectableDirection.Right:
+                selected = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnRight();
+                break;
+        }
+        return selected;
     }
 }

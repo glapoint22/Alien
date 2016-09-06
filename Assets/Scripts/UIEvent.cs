@@ -14,7 +14,7 @@ public abstract class UIEvent : UIParent, IPointerEnterHandler, IPointerExitHand
     
     private IEnumerator onMouseUp;
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public virtual void OnPointerEnter(PointerEventData eventData)
     {
         over = true;
         if (!down)
@@ -26,7 +26,7 @@ public abstract class UIEvent : UIParent, IPointerEnterHandler, IPointerExitHand
         }
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public virtual void OnPointerExit(PointerEventData eventData)
     {
         over = false;
         if (!down)
@@ -38,7 +38,7 @@ public abstract class UIEvent : UIParent, IPointerEnterHandler, IPointerExitHand
         }
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    public virtual void OnPointerDown(PointerEventData eventData)
     {
         //Deselect the previous game object that had the focus
         Scene.currentSelectedGameObject.gameObject.GetComponent<UIEvent>().OnGameObjectDeselect();

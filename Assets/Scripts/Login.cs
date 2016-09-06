@@ -4,8 +4,6 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-
-
 public class Login : Scene {
     [SerializeField]
     private InputField accountNameInputField;
@@ -41,38 +39,6 @@ public class Login : Scene {
 
     public void OnLoginClick()
     {
-        //Check if account name is empty
-        if(accountNameInputField.text == string.Empty)
-        {
-            PromptInfo promptInfo = new PromptInfo
-            {
-                promptTitle = "Login",
-                promptDescription = "Please enter your account name.",
-                button1Text = "Ok",
-                button1Action = delegate {}
-            };
-
-            prompt.Show(promptInfo);
-            return;
-        }
-
-
-        //Check if password is empty
-        if (password.text == string.Empty)
-        {
-            PromptInfo promptInfo = new PromptInfo
-            {
-                promptTitle = "Login",
-                promptDescription = "Please enter your password.",
-                button1Text = "Ok",
-                button1Action = delegate { }
-            };
-
-
-            prompt.Show(promptInfo);
-            return;
-        }
-
         //Is the account name and password valid inputs?
         bool isAccountNameValid = Regex.IsMatch(accountNameInputField.text, @"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$");
         bool isPasswordValid = Regex.IsMatch(password.text, @"^(?=[-_a-zA-Z0-9]*?[A-Z])(?=[-_a-zA-Z0-9]*?[a-z])(?=[-_a-zA-Z0-9]*?[0-9])\S{8,16}$");

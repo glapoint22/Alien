@@ -64,9 +64,6 @@ public class UIGroups : UI
         float[] maxAlpha = new float[elementCount];
         float currentAlpha;
 
-
-        
-
         while (time < fadeTime)
         {
             time += 1 * Time.deltaTime;
@@ -77,14 +74,27 @@ public class UIGroups : UI
                 //Calcualte the speed and get the max alpha for this element
                 if (speed[i] == 0)
                 {
-                    //Test to see which alpha we are using. Select alpha(if the gameobject is selected) or normal alpha
-                    GameObject elementGameObject = uiGroup[index].elements[i].gameObject.transform.parent.gameObject;
+                    //Test to see which alpha we are using
+                    GameObject elementGameObject = uiGroup[index].elements[i].transform.parent.gameObject;
                     float alpha;
-
-                    if(elementGameObject == Scene.currentSelectedGameObject)
+                    
+                    if (elementGameObject == Scene.currentSelectedGameObject)
                     {
                         UIInteractiveGraphic element = (UIInteractiveGraphic)uiGroup[index].elements[i];
                         alpha = element.selectAlpha;
+                    }
+                    else if(elementGameObject.tag == "UIButton")
+                    {
+                        Button button = elementGameObject.GetComponent<Button>();
+                        if (!button.interactable)
+                        {
+                            UIInteractiveGraphic element = (UIInteractiveGraphic)uiGroup[index].elements[i];
+                            alpha = element.disabledAlpha;
+                        }
+                        else
+                        {
+                            alpha = uiGroup[index].elements[i].alpha;
+                        }
                     }
                     else
                     {
