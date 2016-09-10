@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Scene : MonoBehaviour {
-    public EventSystem system;
+    private EventSystem system;
     public Prompt prompt;
 
     public static GameObject currentSelectedGameObject = null;
@@ -12,6 +12,7 @@ public class Scene : MonoBehaviour {
     private bool sixthAxisPressed;
     private bool seventhAxisPressed;
     private enum SelectableDirection { Down, Up, Left, Right }
+    private GameObject defaultSelectedGameObject;
 
 
     public void SetScene(Groups sceneGroup, int colorIndex, GameObject focusGameObject)
@@ -23,9 +24,10 @@ public class Scene : MonoBehaviour {
 
 
         //Set the event system
+        defaultSelectedGameObject = focusGameObject;
         system = EventSystem.current;
-        currentSelectedGameObject = focusGameObject.GetComponent<Selectable>().gameObject;
-        system.SetSelectedGameObject(currentSelectedGameObject.gameObject, new BaseEventData(system));
+        currentSelectedGameObject = defaultSelectedGameObject.GetComponent<Selectable>().gameObject;
+        system.SetSelectedGameObject(currentSelectedGameObject, new BaseEventData(system));
         currentSelectedGameObject.GetComponent<UIEvent>().down = true;
 
         //Fade in the scene
@@ -37,6 +39,13 @@ public class Scene : MonoBehaviour {
 
     void Update()
     {
+
+        //Deselect the current game object if it has lost focus
+        if(system.currentSelectedGameObject == null)
+        {
+            currentSelectedGameObject.GetComponent<UIEvent>().OnGameObjectDeselect();
+        }
+
 
 
         if (Input.GetAxisRaw("6th Axis") == 0)
@@ -163,6 +172,12 @@ public class Scene : MonoBehaviour {
     private Selectable GetCurrentSelected(SelectableDirection selectableDirection)
     {
         Selectable selected = null;
+
+        //If no current game object has the focus than select the default game object
+        if (system.currentSelectedGameObject == null)
+        {
+            return defaultSelectedGameObject.GetComponent<Selectable>();
+        }
 
         switch (selectableDirection)
         {

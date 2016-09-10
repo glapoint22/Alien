@@ -333,6 +333,14 @@ Prefab:
       propertyPath: m_Interactable
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11420104, guid: b0186dc535006e24988b7976e4b89280, type: 2}
+      propertyPath: m_ContentType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11420104, guid: b0186dc535006e24988b7976e4b89280, type: 2}
+      propertyPath: m_InputType
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0186dc535006e24988b7976e4b89280, type: 2}
   m_IsPrefabParent: 0
@@ -450,6 +458,18 @@ Prefab:
       propertyPath: m_Navigation.m_SelectOnRight
       value: 
       objectReference: {fileID: 1458901119}
+    - target: {fileID: 11420104, guid: b0186dc535006e24988b7976e4b89280, type: 2}
+      propertyPath: m_ContentType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11420104, guid: b0186dc535006e24988b7976e4b89280, type: 2}
+      propertyPath: m_KeyboardType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11420104, guid: b0186dc535006e24988b7976e4b89280, type: 2}
+      propertyPath: m_CharacterValidation
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0186dc535006e24988b7976e4b89280, type: 2}
   m_IsPrefabParent: 0
@@ -786,7 +806,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93a4a7566d4a2f14c821a1ba6627f089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  system: {fileID: 0}
   prompt: {fileID: 0}
   accountNameInputField: {fileID: 968479932}
   password: {fileID: 323728834}
