@@ -14,16 +14,15 @@ public class Login : Scene {
     [SerializeField]
     private Toggle rememberAccountNameToggle;
 
+    [SerializeField]
+    private UIButton loginButton;
+
+    private bool accountInputFieldHasText = false;
+    private bool passwordInputFieldHasText = false;
+
 
     void Awake()
     {
-        //Load the startup scene if we are trying to start the game with this scene
-        if (UIGroups.uiGroup[0].elements == null)
-        {
-            SceneManager.LoadScene(0);
-            return;
-        }
-
         //Is the remember account toggle on or off?
         bool rememberAccount = System.Convert.ToBoolean(PlayerPrefs.GetInt("RememberAccount"));
         rememberAccountNameToggle.isOn = rememberAccount;
@@ -151,5 +150,54 @@ public class Login : Scene {
         };
 
         prompt.Show(promptInfo);
+    }
+
+    public void OnAccountInputFieldChange()
+    {
+        InputFieldChange(accountNameInputField, accountInputFieldHasText, password);
+    }
+
+    public void OnPasswordInputFieldChange()
+    {
+        InputFieldChange(password, passwordInputFieldHasText, accountNameInputField);
+    }
+
+    private void InputFieldChange(InputField inputField1, bool hasText, InputField inputField2)
+    {
+        //If input field is NOT empty
+        if (!string.IsNullOrEmpty(inputField1.text))
+        {
+            //As long as the change has occured for the first time from a null string state
+            if (!hasText)
+            {
+                //If the other input field is also NOT empty
+                if (!string.IsNullOrEmpty(inputField2.text))
+                {
+                    //Declare that the input field has text entered
+                    hasText = true;
+
+                    //Enable the login button
+                    for (int i = 0; i < loginButton.children.Length; i++)
+                    {
+                        loginButton.OnOut((UIInteractiveGraphic)loginButton.children[i]);
+                    }
+                    loginButton.button.interactable = true;
+                }
+            }
+        }
+
+        //If the input field is empty
+        else
+        {
+            //Declare that the input field no longer has text entered
+            hasText = false;
+
+            //Disable the login button
+            for (int i = 0; i < loginButton.children.Length; i++)
+            {
+                loginButton.OnDisabled((UIInteractiveGraphic)loginButton.children[i]);
+            }
+            loginButton.button.interactable = false;
+        }
     }
 }

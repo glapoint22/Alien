@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UIDrag : UIButton, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class UIDrag : UIButton, IBeginDragHandler, IDragHandler
 {
     [SerializeField]
     private RectTransform parent;
@@ -24,11 +24,6 @@ public class UIDrag : UIButton, IBeginDragHandler, IDragHandler, IEndDragHandler
         parent.position = new Vector2(data.position.x + xOffset, data.position.y + yOffset);
     }
 
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        
-    }
 
     public override void OnOver(UIInteractiveGraphic child)
     {
