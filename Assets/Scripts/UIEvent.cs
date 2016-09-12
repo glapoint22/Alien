@@ -40,11 +40,6 @@ public abstract class UIEvent : UIParent, IPointerEnterHandler, IPointerExitHand
 
     public virtual void OnPointerDown(PointerEventData eventData)
     {
-        //Deselect the previous game object that had the focus
-        Scene.currentSelectedGameObject.gameObject.GetComponent<UIEvent>().OnGameObjectDeselect();
-
-        //Assign the current game object as the current selected game object
-        Scene.currentSelectedGameObject = gameObject.GetComponent<Selectable>().gameObject;
         down = true;
 
         for (int i = 0; i < children.Length; i++)

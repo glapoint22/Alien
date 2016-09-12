@@ -1,4 +1,4 @@
-public class UISelectButton : UIEvent
+public class UIInteractive : UIEvent
 {
     public override void OnOver(UIInteractiveGraphic child)
     {
@@ -17,6 +17,8 @@ public class UISelectButton : UIEvent
 
     public override void OnUp(UIInteractiveGraphic child)
     {
+        down = false;
+        child.graphic.color = GetUIColor(child.graphic.color, child.upAlpha);
     }
 
     public override void OnOutside(UIInteractiveGraphic child)
@@ -33,5 +35,10 @@ public class UISelectButton : UIEvent
     public override void OnDeselect(UIInteractiveGraphic child)
     {
         child.graphic.color = GetUIColor(child.graphic.color, child.alpha);
+    }
+
+    public void OnDisabled(UIInteractiveGraphic child)
+    {
+        child.graphic.color = GetUIColor(child.graphic.color, child.disabledAlpha);
     }
 }

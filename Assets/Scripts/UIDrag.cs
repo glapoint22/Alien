@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UIDrag : UIButton, IBeginDragHandler, IDragHandler
+public class UIDrag : UIInteractive, IBeginDragHandler, IDragHandler
 {
     [SerializeField]
     private RectTransform parent;

@@ -9,11 +9,11 @@ GameObject:
   m_Component:
   - 224: {fileID: 22471160}
   - 222: {fileID: 22233086}
-  - 114: {fileID: 114000010328138874}
+  - 114: {fileID: 114000014153852106}
   - 114: {fileID: 11420104}
   m_Layer: 5
   m_Name: InputField
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -402,23 +402,6 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 114654}
   m_IsPrefabParent: 1
---- !u!114 &114000010328138874
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 114654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9adcd35ba2747354eab982939a6fe068, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  group: 2
-  children:
-  - {fileID: 114000012180279624}
-  - {fileID: 114000012826686672}
-  - {fileID: 114000010908278148}
-  - {fileID: 114000013649356158}
 --- !u!114 &114000010908278148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -437,6 +420,7 @@ MonoBehaviour:
   downAlpha: 0.3
   upAlpha: 0.3
   selectAlpha: 0.3
+  disabledAlpha: 0
 --- !u!114 &114000012180279624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -455,6 +439,7 @@ MonoBehaviour:
   downAlpha: 1
   upAlpha: 0.37
   selectAlpha: 1
+  disabledAlpha: 0
 --- !u!114 &114000012826686672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -473,6 +458,7 @@ MonoBehaviour:
   downAlpha: 0.1
   upAlpha: 0.1
   selectAlpha: 0.1
+  disabledAlpha: 0
 --- !u!114 &114000013649356158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -491,3 +477,22 @@ MonoBehaviour:
   downAlpha: 0.7
   upAlpha: 0.7
   selectAlpha: 0.7
+  disabledAlpha: 0
+--- !u!114 &114000014153852106
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20336b49335d9974e92f240220e06f88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group: 2
+  children:
+  - {fileID: 114000013649356158}
+  - {fileID: 114000012826686672}
+  - {fileID: 114000012180279624}
+  - {fileID: 114000010908278148}
+  selectableComponent: {fileID: 11420104}

@@ -55,11 +55,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 224000013865992374}
-  - 114: {fileID: 114000013135348148}
+  - 114: {fileID: 114000014231206066}
   - 114: {fileID: 114000014155513868}
   m_Layer: 5
   m_Name: Toggle
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,6 +136,7 @@ MonoBehaviour:
   downAlpha: 0
   upAlpha: 0.4
   selectAlpha: 0.3
+  disabledAlpha: 0
 --- !u!114 &114000010253769346
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -181,6 +182,7 @@ MonoBehaviour:
   downAlpha: 1
   upAlpha: 0.6
   selectAlpha: 1
+  disabledAlpha: 0
 --- !u!114 &114000010962167010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -253,6 +255,7 @@ MonoBehaviour:
   downAlpha: 0.3
   upAlpha: 0
   selectAlpha: 0
+  disabledAlpha: 0
 --- !u!114 &114000012498731386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -286,24 +289,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Remember Account Name
---- !u!114 &114000013135348148
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011522408206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cfd5d5727102af47b819b8e6f513e6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  group: 2
-  children:
-  - {fileID: 114000010131345506}
-  - {fileID: 114000012396178086}
-  - {fileID: 114000014183903810}
-  - {fileID: 114000013390625278}
-  - {fileID: 114000010801726118}
 --- !u!114 &114000013390625278
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -322,6 +307,7 @@ MonoBehaviour:
   downAlpha: 1
   upAlpha: 0.9
   selectAlpha: 0.8
+  disabledAlpha: 0
 --- !u!114 &114000013754382844
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -361,7 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 3
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -423,6 +409,26 @@ MonoBehaviour:
   downAlpha: 0.8
   upAlpha: 0.7
   selectAlpha: 1
+  disabledAlpha: 0
+--- !u!114 &114000014231206066
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011522408206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00f48cbec44179f49a11215d5e3fe0c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group: 0
+  children:
+  - {fileID: 114000010131345506}
+  - {fileID: 114000012396178086}
+  - {fileID: 114000014183903810}
+  - {fileID: 114000013390625278}
+  - {fileID: 114000010801726118}
+  selectableComponent: {fileID: 0}
 --- !u!222 &222000010835625744
 CanvasRenderer:
   m_ObjectHideFlags: 1

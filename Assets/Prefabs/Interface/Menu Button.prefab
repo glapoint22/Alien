@@ -73,12 +73,12 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 224000011591149342}
-  - 114: {fileID: 114000010875277792}
+  - 114: {fileID: 114000014061279510}
   - 114: {fileID: 114000013942704534}
   - 114: {fileID: 114000013442291234}
   m_Layer: 5
   m_Name: Menu Button
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,24 +179,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114000010875277792
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012629298352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9adcd35ba2747354eab982939a6fe068, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  group: 2
-  children:
-  - {fileID: 114000011194190652}
-  - {fileID: 114000011452734744}
-  - {fileID: 114000014218973972}
-  - {fileID: 114000010878560914}
-  - {fileID: 114000011659315800}
 --- !u!114 &114000010878560914
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -215,6 +197,7 @@ MonoBehaviour:
   downAlpha: 0.6
   upAlpha: 0.5
   selectAlpha: 0.6
+  disabledAlpha: 0
 --- !u!114 &114000011194190652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -233,6 +216,7 @@ MonoBehaviour:
   downAlpha: 0.9
   upAlpha: 0.8
   selectAlpha: 1
+  disabledAlpha: 0
 --- !u!114 &114000011215700742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -278,6 +262,7 @@ MonoBehaviour:
   downAlpha: 0.4
   upAlpha: 0.3
   selectAlpha: 0.3
+  disabledAlpha: 0
 --- !u!114 &114000011531355652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -323,6 +308,7 @@ MonoBehaviour:
   downAlpha: 0.57
   upAlpha: 0.47
   selectAlpha: 1
+  disabledAlpha: 0
 --- !u!114 &114000011757035726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -380,7 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 3
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -409,6 +395,25 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114000014061279510
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012629298352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20336b49335d9974e92f240220e06f88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group: 0
+  children:
+  - {fileID: 114000011452734744}
+  - {fileID: 114000014218973972}
+  - {fileID: 114000010878560914}
+  - {fileID: 114000011659315800}
+  - {fileID: 114000011194190652}
+  selectableComponent: {fileID: 114000013942704534}
 --- !u!114 &114000014218973972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -427,6 +432,7 @@ MonoBehaviour:
   downAlpha: 0.47
   upAlpha: 0.37
   selectAlpha: 0.47
+  disabledAlpha: 0
 --- !u!222 &222000010061009036
 CanvasRenderer:
   m_ObjectHideFlags: 1

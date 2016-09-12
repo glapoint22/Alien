@@ -83,10 +83,10 @@ public class UIGroups : UI
                         UIInteractiveGraphic element = (UIInteractiveGraphic)uiGroup[index].elements[i];
                         alpha = element.selectAlpha;
                     }
-                    else if(elementGameObject.tag == "UIButton")
+                    else if(elementGameObject.tag == "Selectable")
                     {
-                        Button button = elementGameObject.GetComponent<Button>();
-                        if (!button.interactable)
+                        Selectable selectable = elementGameObject.GetComponent<Selectable>();
+                        if (!selectable.interactable)
                         {
                             UIInteractiveGraphic element = (UIInteractiveGraphic)uiGroup[index].elements[i];
                             alpha = element.disabledAlpha;

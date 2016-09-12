@@ -15,7 +15,7 @@ public class Login : Scene {
     private Toggle rememberAccountNameToggle;
 
     [SerializeField]
-    private UIButton loginButton;
+    private UISelectable loginButton;
 
     private bool accountInputFieldHasText = false;
     private bool passwordInputFieldHasText = false;
@@ -181,7 +181,7 @@ public class Login : Scene {
                     {
                         loginButton.OnOut((UIInteractiveGraphic)loginButton.children[i]);
                     }
-                    loginButton.button.interactable = true;
+                    loginButton.selectableComponent.interactable = true;
                 }
             }
         }
@@ -197,7 +197,7 @@ public class Login : Scene {
             {
                 loginButton.OnDisabled((UIInteractiveGraphic)loginButton.children[i]);
             }
-            loginButton.button.interactable = false;
+            loginButton.selectableComponent.interactable = false;
         }
     }
 }
