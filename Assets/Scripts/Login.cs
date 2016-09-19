@@ -34,6 +34,8 @@ public class Login : Scene {
     void Start()
     {
         SetScene(Groups.Login, 2, GameObject.Find("Account InputField"));
+
+        loginButton.transform.GetChild(4).GetComponent<Text>().text = Localization.key.login;
     }
 
     public void OnLoginClick()

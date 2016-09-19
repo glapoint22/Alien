@@ -950,7 +950,7 @@ Prefab:
     - target: {fileID: 114000013226539504, guid: 22ebd8eb21d65f64f8a0829cd2a093db,
         type: 2}
       propertyPath: m_Text
-      value: Login
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 114000013873394000, guid: 22ebd8eb21d65f64f8a0829cd2a093db,
         type: 2}

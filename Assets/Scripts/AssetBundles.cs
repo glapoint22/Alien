@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System;
 using System.Collections.Generic;
@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class AssetBundles {
     public GameObject asset;
+    public List<string> variants = new List<string>();
     private ProgressBar progressBar;
-    private Dictionary<string, int> assetBundleVersion = new Dictionary<string, int>();
+    public Dictionary<string, int> assetBundleVersion = new Dictionary<string, int>();
     private List<string> assetBundlesToDownload = new List<string>();
-    private AssetBundleManifest manifest;
+    public AssetBundleManifest manifest;
 
     IEnumerator GetAssetBundleVersions()
     {
@@ -72,6 +73,23 @@ public class AssetBundles {
         //Find out which asset bundles we need to download based on its version
         for (int i = 0; i < assetBundles.Length; i++)
         {
+            int index = assetBundles[i].IndexOf(".");
+            bool foundVariant = false;
+
+            if (index != -1)
+            {
+                for(int j = 0; j < variants.Count; j++)
+                {
+                    string variant = assetBundles[i].Substring(index + 1);
+                    if(variant == variants[j])
+                    {
+                        foundVariant = true;
+                    }
+                }
+
+                if (!foundVariant) continue;
+            }
+
             int version = assetBundleVersion[assetBundles[i]];
             bool isCached = Caching.IsVersionCached(GameManager.assetBundlesURL + assetBundles[i], version);
 
@@ -195,4 +213,50 @@ public class AssetBundles {
             yield return async;
         }
     }
+
+    // Remaps the asset bundle name to the best fitting asset bundle variant.
+    public string RemapVariantName(string assetBundleName)
+    {
+        string[] bundlesWithVariant = manifest.GetAllAssetBundlesWithVariant();
+
+        string[] split = assetBundleName.Split('.');
+
+        int bestFit = int.MaxValue;
+        int bestFitIndex = -1;
+        // Loop all the assetBundles with variant to find the best fit variant assetBundle.
+        for (int i = 0; i < bundlesWithVariant.Length; i++)
+        {
+            string[] curSplit = bundlesWithVariant[i].Split('.');
+            if (curSplit[0] != split[0])
+                continue;
+
+            int found = Array.IndexOf(variants.ToArray(), curSplit[1]);
+
+            // If there is no active variant found. We still want to use the first 
+            if (found == -1)
+                found = int.MaxValue - 1;
+
+            if (found < bestFit)
+            {
+                bestFit = found;
+                bestFitIndex = i;
+            }
+        }
+
+        if (bestFit == int.MaxValue - 1)
+        {
+            Debug.LogWarning("Ambigious asset bundle variant chosen because there was no matching active variant: " + bundlesWithVariant[bestFitIndex]);
+        }
+
+        if (bestFitIndex != -1)
+        {
+            return bundlesWithVariant[bestFitIndex];
+        }
+        else
+        {
+            return assetBundleName;
+        }
+    }
+
+    
 }
