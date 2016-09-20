@@ -18,7 +18,13 @@ public class Startup : MonoBehaviour
         {
             AssetBundles assetBundles = new AssetBundles();
 
-            //Variants
+            //Get the asset bundle versions
+            yield return assetBundles.GetAssetBundleVersions();
+
+            //Get the manifest
+            yield return assetBundles.GetManifest();
+
+            //Set the variants
             string systemLanguage = Application.systemLanguage.ToString().ToLower();
             assetBundles.variants.Add(systemLanguage);
 
@@ -29,16 +35,9 @@ public class Startup : MonoBehaviour
             //Download the asset bundles
             yield return assetBundles.DownloadAssetBundles();
 
-
-            string[] dependencies = assetBundles.manifest.GetAllDependencies("localization");
-            string dependency = assetBundles.RemapVariantName(dependencies[0]);
-            int version = assetBundles.assetBundleVersion[dependency];
-            WWW www = WWW.LoadFromCacheOrDownload(GameManager.assetBundlesURL + dependency, version);
-            yield return www;
-
+            //Load the localization gameobject
             yield return assetBundles.LoadGameObjectFromAssetBundle("localization", "Localization");
             DontDestroyOnLoad(assetBundles.asset);
-
 
             //Load the login scene
             yield return assetBundles.LoadScene("scenes/login", "Login", false);

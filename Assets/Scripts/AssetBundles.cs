@@ -8,11 +8,11 @@ public class AssetBundles {
     public GameObject asset;
     public List<string> variants = new List<string>();
     private ProgressBar progressBar;
-    public Dictionary<string, int> assetBundleVersion = new Dictionary<string, int>();
+    private Dictionary<string, int> assetBundleVersion = new Dictionary<string, int>();
     private List<string> assetBundlesToDownload = new List<string>();
-    public AssetBundleManifest manifest;
+    private AssetBundleManifest manifest;
 
-    IEnumerator GetAssetBundleVersions()
+    public IEnumerator GetAssetBundleVersions()
     {
         WWW www = new WWW(GameManager.phpURL + "Get_AssetBundles.php");
         yield return www;
@@ -32,13 +32,31 @@ public class AssetBundles {
 
     public IEnumerator LoadGameObjectFromAssetBundle(string assetBundleName, string assetName)
     {
-        if (assetBundleVersion.Count == 0)
+        string[] dependencies = manifest.GetAllDependencies(assetBundleName);
+        List<AssetBundle> bundles = new List<AssetBundle>();
+        int version;
+        WWW www;
+
+        //Get the dependencies
+        for (int i = 0; i < dependencies.Length; i++)
         {
-            yield return GetAssetBundleVersions();
+            string dependency = dependencies[i];
+            if (dependencies[i].IndexOf(".") != -1)
+            {
+                dependency = GetVariant(dependency);
+            }
+
+            version = assetBundleVersion[dependency];
+            www = WWW.LoadFromCacheOrDownload(GameManager.assetBundlesURL + dependency, version);
+            yield return www;
+            if (!string.IsNullOrEmpty(www.error)) throw new Exception("WWW download had an error: " + www.error);
+
+            bundles.Add(www.assetBundle);
+
         }
 
-        int version = assetBundleVersion[assetBundleName];
-        WWW www = WWW.LoadFromCacheOrDownload(GameManager.assetBundlesURL + assetBundleName, version);
+        version = assetBundleVersion[assetBundleName];
+        www = WWW.LoadFromCacheOrDownload(GameManager.assetBundlesURL + assetBundleName, version);
         yield return www;
         if (!string.IsNullOrEmpty(www.error)) throw new Exception("WWW download had an error: " + www.error);
 
@@ -52,50 +70,52 @@ public class AssetBundles {
 
         //Unload from memory
         bundle.Unload(false);
+        for(int i = 0; i < bundles.Count; i++)
+        {
+            bundles[i].Unload(false);
+        }
     }
 
 
-    IEnumerator GetAssetBundlesToDownload()
+    private void GetAssetBundlesToDownload()
     {
         string[] assetBundles;
 
-        //Get the manifest
-        WWW www = new WWW(GameManager.assetBundlesURL + "AssetBundles");
-        yield return www;
-        if (!string.IsNullOrEmpty(www.error)) throw new Exception("WWW download had an error: " + www.error);
-
-
         //Get all the asset bundles from the manifest
-        manifest = (AssetBundleManifest)www.assetBundle.LoadAsset("AssetBundleManifest", typeof(AssetBundleManifest));
         assetBundles = manifest.GetAllAssetBundles();
-
 
         //Find out which asset bundles we need to download based on its version
         for (int i = 0; i < assetBundles.Length; i++)
         {
-            int index = assetBundles[i].IndexOf(".");
-            bool foundVariant = false;
+            //Don't downlaod any variants
+            if (assetBundles[i].IndexOf(".") != -1) continue;
 
-            if (index != -1)
+            //Check to see if this assetbundle has dependencies
+            string[] dependencies = manifest.GetAllDependencies(assetBundles[i]);
+
+            //loop through the dependencies and only set for download if they are variants
+            for (int j = 0; j < dependencies.Length; j++)
             {
-                for(int j = 0; j < variants.Count; j++)
+                if(dependencies[j].IndexOf(".") != -1)
                 {
-                    string variant = assetBundles[i].Substring(index + 1);
-                    if(variant == variants[j])
-                    {
-                        foundVariant = true;
-                    }
+                    SetAssetBundleForDownload(GetVariant(dependencies[j]));
                 }
-
-                if (!foundVariant) continue;
             }
 
-            int version = assetBundleVersion[assetBundles[i]];
-            bool isCached = Caching.IsVersionCached(GameManager.assetBundlesURL + assetBundles[i], version);
+            SetAssetBundleForDownload(assetBundles[i]);
+        }
+    }
 
-            if (!isCached)
+    private void SetAssetBundleForDownload(string assetBundle)
+    {
+        int version = assetBundleVersion[assetBundle];
+        bool isCached = Caching.IsVersionCached(GameManager.assetBundlesURL + assetBundle, version);
+
+        if (!isCached)
+        {
+            if (!assetBundlesToDownload.Contains(assetBundle))
             {
-                assetBundlesToDownload.Add(assetBundles[i]);
+                assetBundlesToDownload.Add(assetBundle);
             }
         }
     }
@@ -113,7 +133,7 @@ public class AssetBundles {
 
 
         //Get the asset bundles that need to be downloaded
-        yield return GetAssetBundlesToDownload();
+        GetAssetBundlesToDownload();
 
         if (assetBundlesToDownload.Count > 0)
         {
@@ -133,7 +153,7 @@ public class AssetBundles {
         }
     }
 
-    IEnumerator Download()
+    private IEnumerator Download()
     {
         //Loop through all the assetbundles that need to be downloaded
         float totalProgress = 0;
@@ -214,43 +234,30 @@ public class AssetBundles {
         }
     }
 
-    // Remaps the asset bundle name to the best fitting asset bundle variant.
-    public string RemapVariantName(string assetBundleName)
+    private string GetVariant(string assetBundleName)
     {
         string[] bundlesWithVariant = manifest.GetAllAssetBundlesWithVariant();
-
         string[] split = assetBundleName.Split('.');
+        int index = -1;
 
-        int bestFit = int.MaxValue;
-        int bestFitIndex = -1;
-        // Loop all the assetBundles with variant to find the best fit variant assetBundle.
+        // Loop all the assetBundles with variant to find the variant to use
         for (int i = 0; i < bundlesWithVariant.Length; i++)
         {
             string[] curSplit = bundlesWithVariant[i].Split('.');
-            if (curSplit[0] != split[0])
-                continue;
+            if (curSplit[0] != split[0]) continue;
 
-            int found = Array.IndexOf(variants.ToArray(), curSplit[1]);
-
-            // If there is no active variant found. We still want to use the first 
-            if (found == -1)
-                found = int.MaxValue - 1;
-
-            if (found < bestFit)
+            if (variants.Contains(curSplit[1]))
             {
-                bestFit = found;
-                bestFitIndex = i;
+                index = i;
+                break;
             }
         }
 
-        if (bestFit == int.MaxValue - 1)
+        
+        //Return the variant
+        if (index != -1)
         {
-            Debug.LogWarning("Ambigious asset bundle variant chosen because there was no matching active variant: " + bundlesWithVariant[bestFitIndex]);
-        }
-
-        if (bestFitIndex != -1)
-        {
-            return bundlesWithVariant[bestFitIndex];
+            return bundlesWithVariant[index];
         }
         else
         {
@@ -258,5 +265,13 @@ public class AssetBundles {
         }
     }
 
-    
+    public IEnumerator GetManifest()
+    {
+        //Get the manifest
+        WWW www = new WWW(GameManager.assetBundlesURL + "AssetBundles");
+        yield return www;
+        if (!string.IsNullOrEmpty(www.error)) throw new Exception("WWW download had an error: " + www.error);
+
+        manifest = (AssetBundleManifest)www.assetBundle.LoadAsset("AssetBundleManifest", typeof(AssetBundleManifest));
+    }
 }
