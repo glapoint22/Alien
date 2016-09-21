@@ -199,9 +199,17 @@ public class AssetBundles {
         //Get all the dependencies for this scene
         for (int i = 0; i < dependencies.Length; i++)
         {
-            //Get the current dependency
-            version = assetBundleVersion[dependencies[i]];
-            www = WWW.LoadFromCacheOrDownload(GameManager.assetBundlesURL + dependencies[i], version);
+            string dependency = dependencies[i];
+
+            //If this dependency has any variants, use the correct variant
+            if (dependency.IndexOf(".") != -1)
+            {
+                dependency = GetVariant(dependency);
+            }
+
+            //load the current dependency
+            version = assetBundleVersion[dependency];
+            www = WWW.LoadFromCacheOrDownload(GameManager.assetBundlesURL + dependency, version);
             while (!www.isDone)
             {
                 if (showProgress)
@@ -215,7 +223,7 @@ public class AssetBundles {
         }
 
 
-        //Get the scene to load from cache
+        //Load the scene from cache
         version = assetBundleVersion[assetBundleName];
         www = WWW.LoadFromCacheOrDownload(GameManager.assetBundlesURL + assetBundleName, version);
         yield return www;
@@ -240,7 +248,7 @@ public class AssetBundles {
         string[] split = assetBundleName.Split('.');
         int index = -1;
 
-        // Loop all the assetBundles with variant to find the variant to use
+        // Loop through all the assetBundles with variant to find the variant to use
         for (int i = 0; i < bundlesWithVariant.Length; i++)
         {
             string[] curSplit = bundlesWithVariant[i].Split('.');
@@ -253,7 +261,6 @@ public class AssetBundles {
             }
         }
 
-        
         //Return the variant
         if (index != -1)
         {

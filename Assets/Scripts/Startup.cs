@@ -16,6 +16,7 @@ public class Startup : MonoBehaviour
     {
         if(version == Version.Live)
         {
+            //Create the assetBundles object
             AssetBundles assetBundles = new AssetBundles();
 
             //Get the asset bundle versions
