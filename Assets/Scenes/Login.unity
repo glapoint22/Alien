@@ -242,9 +242,20 @@ Prefab:
       propertyPath: m_Interactable
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012498731386, guid: a0d9210008ab5d747a789bd927114fa4,
+        type: 2}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a0d9210008ab5d747a789bd927114fa4, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &226593637 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000012498731386, guid: a0d9210008ab5d747a789bd927114fa4,
+    type: 2}
+  m_PrefabInternal: {fileID: 226593636}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1001 &323728832
 Prefab:
   m_ObjectHideFlags: 0
@@ -654,7 +665,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11429864, guid: acffc7273a568ef49822993cd12d0d57, type: 2}
       propertyPath: m_Text
-      value: Account
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 11464074, guid: acffc7273a568ef49822993cd12d0d57, type: 2}
       propertyPath: group
@@ -667,6 +678,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: acffc7273a568ef49822993cd12d0d57, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &671474410 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11429864, guid: acffc7273a568ef49822993cd12d0d57,
+    type: 2}
+  m_PrefabInternal: {fileID: 671474409}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!224 &691713613 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224000011591149342, guid: 464a8b1452ab4b740b34b5e0ec537cda,
@@ -782,7 +799,7 @@ Prefab:
     - target: {fileID: 114000010172776942, guid: 464a8b1452ab4b740b34b5e0ec537cda,
         type: 2}
       propertyPath: m_Text
-      value: Options
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 224000011591149342, guid: 464a8b1452ab4b740b34b5e0ec537cda,
         type: 2}
@@ -836,6 +853,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 715024252}
   m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &715024255 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000010172776942, guid: 464a8b1452ab4b740b34b5e0ec537cda,
+    type: 2}
+  m_PrefabInternal: {fileID: 715024252}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1001 &744068249
 Prefab:
   m_ObjectHideFlags: 0
@@ -1022,6 +1045,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 744068249}
   m_Script: {fileID: 11500000, guid: 00f48cbec44179f49a11215d5e3fe0c9, type: 3}
+--- !u!114 &744068252 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000013226539504, guid: 22ebd8eb21d65f64f8a0829cd2a093db,
+    type: 2}
+  m_PrefabInternal: {fileID: 744068249}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &860742823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,6 +1083,13 @@ MonoBehaviour:
   password: {fileID: 323728834}
   rememberAccountNameToggle: {fileID: 111983480}
   loginButton: {fileID: 744068251}
+  loginButtonText: {fileID: 744068252}
+  accountLabel: {fileID: 671474410}
+  passwordLabel: {fileID: 1377952239}
+  rememberAccountNameLabel: {fileID: 226593637}
+  accountMenuButtonLabel: {fileID: 1375958055}
+  optionsMenuButtonLabel: {fileID: 715024255}
+  quitMenuButtonLabel: {fileID: 1458901120}
 --- !u!4 &860742825
 Transform:
   m_ObjectHideFlags: 0
@@ -1582,7 +1618,7 @@ Prefab:
     - target: {fileID: 114000010172776942, guid: 464a8b1452ab4b740b34b5e0ec537cda,
         type: 2}
       propertyPath: m_Text
-      value: Account
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 114000013942704534, guid: 464a8b1452ab4b740b34b5e0ec537cda,
         type: 2}
@@ -1621,6 +1657,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1375958053}
   m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &1375958055 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000010172776942, guid: 464a8b1452ab4b740b34b5e0ec537cda,
+    type: 2}
+  m_PrefabInternal: {fileID: 1375958053}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1001 &1377952237
 Prefab:
   m_ObjectHideFlags: 0
@@ -1702,7 +1744,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11429864, guid: acffc7273a568ef49822993cd12d0d57, type: 2}
       propertyPath: m_Text
-      value: Password
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 11464074, guid: acffc7273a568ef49822993cd12d0d57, type: 2}
       propertyPath: group
@@ -1728,6 +1770,12 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22414226, guid: acffc7273a568ef49822993cd12d0d57,
     type: 2}
   m_PrefabInternal: {fileID: 1377952237}
+--- !u!114 &1377952239 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11429864, guid: acffc7273a568ef49822993cd12d0d57,
+    type: 2}
+  m_PrefabInternal: {fileID: 1377952237}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1001 &1458901117
 Prefab:
   m_ObjectHideFlags: 0
@@ -1838,7 +1886,7 @@ Prefab:
     - target: {fileID: 114000010172776942, guid: 464a8b1452ab4b740b34b5e0ec537cda,
         type: 2}
       propertyPath: m_Text
-      value: Quit
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 224000011591149342, guid: 464a8b1452ab4b740b34b5e0ec537cda,
         type: 2}
@@ -1892,6 +1940,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1458901117}
   m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &1458901120 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000010172776942, guid: 464a8b1452ab4b740b34b5e0ec537cda,
+    type: 2}
+  m_PrefabInternal: {fileID: 1458901117}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &1485991342
 GameObject:
   m_ObjectHideFlags: 0

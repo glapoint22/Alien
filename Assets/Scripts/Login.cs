@@ -17,6 +17,27 @@ public class Login : Scene {
     [SerializeField]
     private UISelectable loginButton;
 
+    [SerializeField]
+    private Text loginButtonText;
+
+    [SerializeField]
+    private Text accountLabel;
+
+    [SerializeField]
+    private Text passwordLabel;
+
+    [SerializeField]
+    private Text rememberAccountNameLabel;
+
+    [SerializeField]
+    private Text accountMenuButtonLabel;
+
+    [SerializeField]
+    private Text optionsMenuButtonLabel;
+
+    [SerializeField]
+    private Text quitMenuButtonLabel;
+
     private bool accountInputFieldHasText = false;
     private bool passwordInputFieldHasText = false;
 
@@ -35,7 +56,14 @@ public class Login : Scene {
     {
         SetScene(Groups.Login, 2, GameObject.Find("Account InputField"));
 
-        loginButton.transform.GetChild(4).GetComponent<Text>().text = Localization.key.login;
+        //Assign the text
+        accountLabel.text = Localization.key.accountLabel;
+        loginButtonText.text = Localization.key.loginButton;
+        passwordLabel.text = Localization.key.passwordLabel;
+        rememberAccountNameLabel.text = Localization.key.rememberAccountNameLabel;
+        accountMenuButtonLabel.text = Localization.key.accountMenuButton;
+        optionsMenuButtonLabel.text = Localization.key.optionsMenuButton;
+        quitMenuButtonLabel.text = Localization.key.quitMenuButton;
     }
 
     public void OnLoginClick()

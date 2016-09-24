@@ -1,1 +1,9 @@
-{"login":"Login","account":"Account","password":"Password"}
+{
+	"loginButton": "Login",
+	"accountLabel": "Account",
+	"passwordLabel": "Password",
+	"rememberAccountNameLabel": "Remember Account Name",
+	"accountMenuButton": "Account",
+	"optionsMenuButton": "Options",
+	"quitMenuButton": "Quit"
+}

@@ -27,7 +27,7 @@ public class Startup : MonoBehaviour
 
             //Set the variants
             string systemLanguage = Application.systemLanguage.ToString().ToLower();
-            assetBundles.variants.Add(systemLanguage);
+            assetBundles.variants.Add("spanish");
 
             //Load the space background
             yield return assetBundles.LoadGameObjectFromAssetBundle("space_background", "Space Background");

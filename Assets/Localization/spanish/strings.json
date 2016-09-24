@@ -1,1 +1,9 @@
-{"login":"Iniciar sesión","account":"Cuenta","password":"Contraseña"}
+{
+	"loginButton": "Iniciar sesiï¿½n",
+	"accountLabel": "Cuenta",
+	"passwordLabel": "Contraseï¿½a",
+	"rememberAccountNameLabel": "Recordar nombre de cuenta",
+	"accountMenuButton": "Cuenta",
+	"optionsMenuButton": "opciones",
+	"quitMenuButton": "Dejar"
+}
