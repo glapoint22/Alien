@@ -9,6 +9,9 @@ public class Startup : MonoBehaviour
     private GameObject spaceBackgroundPrefab;
 
     [SerializeField]
+    private GameObject localizationPrefab;
+
+    [SerializeField]
     private Version version;
     private enum Version { Development, Live}
 
@@ -27,7 +30,7 @@ public class Startup : MonoBehaviour
 
             //Set the variants
             string systemLanguage = Application.systemLanguage.ToString().ToLower();
-            assetBundles.variants.Add("spanish");
+            assetBundles.variants.Add(systemLanguage);
 
             //Load the space background
             yield return assetBundles.LoadGameObjectFromAssetBundle("space_background", "Space Background");
@@ -45,8 +48,15 @@ public class Startup : MonoBehaviour
         }
         else
         {
+            //Instantiate the space background
             GameObject spaceBackground = Instantiate(spaceBackgroundPrefab);
             DontDestroyOnLoad(spaceBackground);
+
+            //Instantiate the localization
+            GameObject localization = Instantiate(localizationPrefab);
+            DontDestroyOnLoad(localization);
+
+            //Load the login scene
             SceneManager.LoadScene(1);
         }
     }

@@ -363,7 +363,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceBackgroundPrefab: {fileID: 1000011539473184, guid: 2afdae7c860d3ad4b809a4a080fec04c,
     type: 2}
-  version: 1
+  localizationPrefab: {fileID: 1000013143625818, guid: f82b99657079a51409403931c483521b,
+    type: 2}
+  version: 0
 --- !u!4 &1443732501
 Transform:
   m_ObjectHideFlags: 0
