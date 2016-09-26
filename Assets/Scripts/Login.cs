@@ -40,6 +40,7 @@ public class Login : Scene {
 
     private bool accountInputFieldHasText = false;
     private bool passwordInputFieldHasText = false;
+    private IEnumerator enterListener;
 
 
     void Awake()
@@ -50,6 +51,7 @@ public class Login : Scene {
         
         //If remember account toggle is on, display the account name
         if(rememberAccount) accountNameInputField.text = PlayerPrefs.GetString("AccountName");
+        
     }
 
     void Start()
@@ -81,10 +83,11 @@ public class Login : Scene {
                 promptTitle = "Login",
                 promptDescription = "The account name or password you entered is invalid. Please enter a valid account name and password.",
                 button1Text = "Ok",
-                button1Action = delegate { }
+                button1Action = delegate { ClearInputFields(); },
+                xButtonAction = delegate { ClearInputFields(); }
             };
 
-
+            prompt.cancelDelegate = delegate { ClearInputFields(); };
             prompt.Show(promptInfo);
             return;
         }
@@ -184,15 +187,15 @@ public class Login : Scene {
 
     public void OnAccountInputFieldChange()
     {
-        InputFieldChange(accountNameInputField, accountInputFieldHasText, password);
+        InputFieldChange(accountNameInputField, ref accountInputFieldHasText, password);
     }
 
     public void OnPasswordInputFieldChange()
     {
-        InputFieldChange(password, passwordInputFieldHasText, accountNameInputField);
+        InputFieldChange(password, ref passwordInputFieldHasText, accountNameInputField);
     }
 
-    private void InputFieldChange(InputField inputField1, bool hasText, InputField inputField2)
+    private void InputFieldChange(InputField inputField1, ref bool hasText, InputField inputField2)
     {
         //If input field is NOT empty
         if (!string.IsNullOrEmpty(inputField1.text))
@@ -212,6 +215,11 @@ public class Login : Scene {
                         loginButton.OnOut((UIInteractiveGraphic)loginButton.children[i]);
                     }
                     loginButton.selectableComponent.interactable = true;
+
+                    //Run coroutine
+                    if (enterListener != null) StopCoroutine(enterListener);
+                    enterListener = EnterListener();
+                    StartCoroutine(enterListener);
                 }
             }
         }
@@ -228,6 +236,32 @@ public class Login : Scene {
                 loginButton.OnDisabled((UIInteractiveGraphic)loginButton.children[i]);
             }
             loginButton.selectableComponent.interactable = false;
+
+            //Stop coroutine
+            if (enterListener != null) StopCoroutine(enterListener);
         }
     }
+
+    IEnumerator EnterListener()
+    {
+        while (true)
+        {
+            if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return))
+            {
+                if (enterListener != null) StopCoroutine(enterListener);
+                if(!prompt.isVisible)OnLoginClick();
+            }
+            yield return null;
+        }
+    }
+
+    void ClearInputFields()
+    {
+        accountNameInputField.text = string.Empty;
+        password.text = string.Empty;
+
+        currentSelectedGameObject = accountNameInputField.gameObject;
+        SetSelectedGameObject();
+    }
+
 }

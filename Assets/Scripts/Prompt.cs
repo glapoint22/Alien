@@ -7,6 +7,10 @@ public class Prompt : MonoBehaviour {
     private UIPrompt prompt;
     private Groups fadeOutGroup;
     private float PromptFadeTime = 0.25f;
+    public bool isVisible;
+
+    public delegate void CancelDelegate();
+    public CancelDelegate cancelDelegate;
 
     public static Prompt instance
     {
@@ -22,6 +26,7 @@ public class Prompt : MonoBehaviour {
     {
         DontDestroyOnLoad(gameObject);
         prompt = transform.GetChild(0).GetComponent<UIPrompt>();
+        
     }
 
     public void Initialize(Groups fadeOutGroup)
@@ -42,12 +47,18 @@ public class Prompt : MonoBehaviour {
         gameObject.SetActive(true);
         prompt.panel.SetActive(false);
 
+        //Set focus to button 1
+        Scene.currentSelectedGameObject = prompt.button1.buttonComponent.gameObject;
+        Scene.SetSelectedGameObject();
+
+
         //Set the title and description
         prompt.promptTitleText.text = promptInfo.promptTitle;
         prompt.promptDescriptionText.text = promptInfo.promptDescription;
 
         //XButton
         prompt.xButton.onClick.RemoveAllListeners();
+        prompt.xButton.onClick.AddListener(promptInfo.xButtonAction);
         prompt.xButton.onClick.AddListener(Hide);
 
         //Button1
@@ -70,6 +81,7 @@ public class Prompt : MonoBehaviour {
             prompt.button2.buttonComponent.onClick.AddListener(Hide);
         }
 
+        isVisible = true;
 
         StartCoroutine(UIGroups.FadeIn(Groups.Prompt, PromptFadeTime));
         StartCoroutine(UIGroups.FadeOut(fadeOutGroup, 0.05f, PromptFadeTime));
@@ -78,8 +90,15 @@ public class Prompt : MonoBehaviour {
 
     private void Hide()
     {
+        isVisible = false;
         prompt.panel.SetActive(true);
         StartCoroutine(HidePrompt());
+    }
+
+    public void Cancel()
+    {
+        cancelDelegate();
+        Hide();
     }
 
     private IEnumerator HidePrompt()
@@ -88,7 +107,6 @@ public class Prompt : MonoBehaviour {
         yield return StartCoroutine(UIGroups.FadeOut(Groups.Prompt, 0.05f, PromptFadeTime));
         gameObject.SetActive(false);
     }
-
 }
 
 
@@ -111,4 +129,7 @@ public struct PromptInfo
     //Button2
     public string button2Text;
     public UnityAction button2Action;
+
+    //xButton
+    public UnityAction xButtonAction;
 }

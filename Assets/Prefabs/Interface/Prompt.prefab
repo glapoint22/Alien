@@ -11,6 +11,7 @@ GameObject:
   - 114: {fileID: 11494474}
   - 114: {fileID: 11439798}
   - 114: {fileID: 11494728}
+  - 114: {fileID: 114000011760703196}
   m_Layer: 5
   m_Name: Prompt Button 1
   m_TagString: Untagged
@@ -708,14 +709,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f52eddf64d0829b4f89dd0cd70ee5b11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graphic: {fileID: 11404360}
+  graphic: {fileID: 0}
   colorIndex: 1
   alpha: 0.4
   overAlpha: 0.5
   downAlpha: 0.6
   upAlpha: 0.5
-  selectAlpha: 0
-  disabledAlpha: 0
+  selectAlpha: 1
+  disabledAlpha: 0.1
 --- !u!114 &11403908
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -734,7 +735,6 @@ MonoBehaviour:
   - {fileID: 11414604}
   - {fileID: 11419764}
   - {fileID: 11402924}
-  button: {fileID: 11442558}
 --- !u!114 &11404360
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -851,10 +851,10 @@ MonoBehaviour:
   colorIndex: 1
   alpha: 0.6
   overAlpha: 0.8
-  downAlpha: 0
+  downAlpha: 1
   upAlpha: 0.8
-  selectAlpha: 0
-  disabledAlpha: 0
+  selectAlpha: 1
+  disabledAlpha: 0.1
 --- !u!114 &11408458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -926,14 +926,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f52eddf64d0829b4f89dd0cd70ee5b11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graphic: {fileID: 11465560}
+  graphic: {fileID: 0}
   colorIndex: 0
   alpha: 0.37
   overAlpha: 0.47
   downAlpha: 0.57
   upAlpha: 0.47
-  selectAlpha: 0
-  disabledAlpha: 0
+  selectAlpha: 1
+  disabledAlpha: 0.1
 --- !u!114 &11417048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -986,14 +986,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f52eddf64d0829b4f89dd0cd70ee5b11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graphic: {fileID: 11446750}
+  graphic: {fileID: 0}
   colorIndex: 1
   alpha: 0.4
   overAlpha: 0.5
   downAlpha: 0.6
   upAlpha: 0.5
-  selectAlpha: 0
-  disabledAlpha: 0
+  selectAlpha: 0.6
+  disabledAlpha: 0.1
 --- !u!114 &11420638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1111,14 +1111,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f52eddf64d0829b4f89dd0cd70ee5b11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graphic: {fileID: 11434382}
+  graphic: {fileID: 0}
   colorIndex: 1
   alpha: 0.4
   overAlpha: 0.5
   downAlpha: 0.6
   upAlpha: 0.5
-  selectAlpha: 0
-  disabledAlpha: 0
+  selectAlpha: 1
+  disabledAlpha: 0.1
 --- !u!114 &11434382
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1164,11 +1164,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 11442558}
+    m_SelectOnDown: {fileID: 11442558}
+    m_SelectOnLeft: {fileID: 11442558}
+    m_SelectOnRight: {fileID: 11442558}
   m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1269,14 +1269,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f52eddf64d0829b4f89dd0cd70ee5b11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graphic: {fileID: 11442220}
+  graphic: {fileID: 0}
   colorIndex: 0
   alpha: 0.4
   overAlpha: 0.5
   downAlpha: 0.6
   upAlpha: 0.5
-  selectAlpha: 0
-  disabledAlpha: 0
+  selectAlpha: 0.6
+  disabledAlpha: 0.1
 --- !u!114 &11441890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1288,14 +1288,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f52eddf64d0829b4f89dd0cd70ee5b11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graphic: {fileID: 11492240}
+  graphic: {fileID: 0}
   colorIndex: 0
-  alpha: 0.3
-  overAlpha: 0.4
-  downAlpha: 0.5
-  upAlpha: 0.4
-  selectAlpha: 0
-  disabledAlpha: 0
+  alpha: 0.2
+  overAlpha: 0.3
+  downAlpha: 0.4
+  upAlpha: 0.3
+  selectAlpha: 0.3
+  disabledAlpha: 0.05
 --- !u!114 &11442220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1335,11 +1335,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 11439798}
+    m_SelectOnDown: {fileID: 11439798}
+    m_SelectOnLeft: {fileID: 11439798}
+    m_SelectOnRight: {fileID: 11439798}
   m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1357,7 +1357,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
@@ -1386,14 +1386,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f52eddf64d0829b4f89dd0cd70ee5b11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graphic: {fileID: 11401788}
+  graphic: {fileID: 0}
   colorIndex: 0
-  alpha: 0.3
-  overAlpha: 0.4
-  downAlpha: 0.5
-  upAlpha: 0.4
-  selectAlpha: 0
-  disabledAlpha: 0
+  alpha: 0.2
+  overAlpha: 0.3
+  downAlpha: 0.4
+  upAlpha: 0.3
+  selectAlpha: 0.3
+  disabledAlpha: 0.05
 --- !u!114 &11443732
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1419,14 +1419,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f52eddf64d0829b4f89dd0cd70ee5b11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graphic: {fileID: 11465636}
+  graphic: {fileID: 0}
   colorIndex: 0
   alpha: 0.4
   overAlpha: 0.5
   downAlpha: 0.6
   upAlpha: 0.5
-  selectAlpha: 0
-  disabledAlpha: 0
+  selectAlpha: 0.6
+  disabledAlpha: 0.1
 --- !u!114 &11445092
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1492,14 +1492,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f52eddf64d0829b4f89dd0cd70ee5b11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graphic: {fileID: 11454392}
+  graphic: {fileID: 0}
   colorIndex: 0
   alpha: 0.37
   overAlpha: 0.47
   downAlpha: 0.57
   upAlpha: 0.47
-  selectAlpha: 0
-  disabledAlpha: 0
+  selectAlpha: 1
+  disabledAlpha: 0.1
 --- !u!114 &11446426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1631,14 +1631,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f52eddf64d0829b4f89dd0cd70ee5b11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graphic: {fileID: 11404618}
+  graphic: {fileID: 0}
   colorIndex: 1
   alpha: 0.4
   overAlpha: 0.5
   downAlpha: 0.6
   upAlpha: 0.5
-  selectAlpha: 0
-  disabledAlpha: 0
+  selectAlpha: 0.6
+  disabledAlpha: 0.1
 --- !u!114 &11454392
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1684,7 +1684,6 @@ MonoBehaviour:
   - {fileID: 11481334}
   - {fileID: 11464278}
   - {fileID: 11475796}
-  button: {fileID: 0}
   parent: {fileID: 22458642}
   dragCursor: {fileID: 2800000, guid: b1e96062f6065244e93d39e6f21e63f1, type: 3}
 --- !u!114 &11457322
@@ -1795,10 +1794,10 @@ MonoBehaviour:
   colorIndex: 0
   alpha: 0
   overAlpha: 0.5
-  downAlpha: 0
+  downAlpha: 1
   upAlpha: 0.5
-  selectAlpha: 0
-  disabledAlpha: 0
+  selectAlpha: 1
+  disabledAlpha: 0.1
 --- !u!114 &11465560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1871,7 +1870,6 @@ MonoBehaviour:
   - {fileID: 11462726}
   - {fileID: 11458216}
   - {fileID: 11467980}
-  button: {fileID: 0}
 --- !u!114 &11467980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1933,10 +1931,10 @@ MonoBehaviour:
   colorIndex: 2
   alpha: 0.3
   overAlpha: 0.4
-  downAlpha: 0
+  downAlpha: 0.5
   upAlpha: 0.4
-  selectAlpha: 0
-  disabledAlpha: 0
+  selectAlpha: 0.5
+  disabledAlpha: 0.1
 --- !u!114 &11475796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1952,10 +1950,10 @@ MonoBehaviour:
   colorIndex: 0
   alpha: 0
   overAlpha: 0.5
-  downAlpha: 0
+  downAlpha: 1
   upAlpha: 0.5
-  selectAlpha: 0
-  disabledAlpha: 0
+  selectAlpha: 1
+  disabledAlpha: 0.1
 --- !u!114 &11476314
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2083,10 +2081,10 @@ MonoBehaviour:
   colorIndex: 0
   alpha: 0
   overAlpha: 0.5
-  downAlpha: 0
+  downAlpha: 1
   upAlpha: 0.5
-  selectAlpha: 0
-  disabledAlpha: 0
+  selectAlpha: 1
+  disabledAlpha: 0.1
 --- !u!114 &11482760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2318,7 +2316,6 @@ MonoBehaviour:
   - {fileID: 11446416}
   - {fileID: 11452936}
   - {fileID: 11431386}
-  button: {fileID: 11439798}
 --- !u!114 &11494728
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2348,6 +2345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51f98efc857c0a24191c3f0adb68cb2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isVisible: 0
 --- !u!222 &22200782
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -3228,3 +3226,33 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 150900}
   m_IsPrefabParent: 1
+--- !u!114 &114000011760703196
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 16
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11497604}
+          m_MethodName: Cancel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []

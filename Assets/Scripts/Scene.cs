@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Scene : MonoBehaviour {
-    private EventSystem system;
+    private static EventSystem system;
     public Prompt prompt;
 
     public static GameObject currentSelectedGameObject = null;
@@ -43,7 +43,8 @@ public class Scene : MonoBehaviour {
         //Deselect the current game object if it has lost focus
         if(system.currentSelectedGameObject == null)
         {
-            currentSelectedGameObject.GetComponent<UIEvent>().OnGameObjectDeselect();
+            //currentSelectedGameObject.GetComponent<UIEvent>().OnGameObjectDeselect();
+            SetSelectedGameObject();
         }
 
 
@@ -143,7 +144,7 @@ public class Scene : MonoBehaviour {
     }
 
 
-    void SetSelectedGameObject()
+    public static void SetSelectedGameObject()
     {
         system.SetSelectedGameObject(currentSelectedGameObject, new BaseEventData(system));
         currentSelectedGameObject.GetComponent<UIEvent>().OnGameObjectSelect();

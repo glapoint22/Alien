@@ -13,6 +13,13 @@ public class UIDrag : UIInteractive, IBeginDragHandler, IDragHandler
     private float xOffset;
     private float yOffset;
 
+    public override void OnDown(UIInteractiveGraphic child)
+    {
+        base.OnDown(child);
+        Scene.SetSelectedGameObject();
+
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         xOffset = parent.position.x - eventData.position.x;
