@@ -12,6 +12,9 @@ public class Prompt : MonoBehaviour {
     public delegate void CancelDelegate();
     public CancelDelegate cancelDelegate;
 
+    IEnumerator fadeOut;
+    IEnumerator fadeIn;
+
     public static Prompt instance
     {
         get
@@ -48,8 +51,9 @@ public class Prompt : MonoBehaviour {
         prompt.panel.SetActive(false);
 
         //Set focus to button 1
+        Scene.currentSelectedGameObject.GetComponent<UIEvent>().OnGameObjectDeselect();
         Scene.currentSelectedGameObject = prompt.button1.buttonComponent.gameObject;
-        Scene.SetSelectedGameObject();
+        Scene.SetSelectedGameObject(false);
 
 
         //Set the title and description
@@ -83,8 +87,11 @@ public class Prompt : MonoBehaviour {
 
         isVisible = true;
 
-        StartCoroutine(UIGroups.FadeIn(Groups.Prompt, PromptFadeTime));
-        StartCoroutine(UIGroups.FadeOut(fadeOutGroup, 0.05f, PromptFadeTime));
+        fadeIn = UIGroups.F(Groups.Prompt, 0, 1, PromptFadeTime);
+        fadeOut = UIGroups.F(fadeOutGroup, 0.05f, -1, PromptFadeTime);
+
+        StartCoroutine(fadeIn);
+        StartCoroutine(fadeOut);
     }
 
 
@@ -103,8 +110,14 @@ public class Prompt : MonoBehaviour {
 
     private IEnumerator HidePrompt()
     {
-        StartCoroutine(UIGroups.FadeIn(fadeOutGroup, PromptFadeTime));
-        yield return StartCoroutine(UIGroups.FadeOut(Groups.Prompt, 0.05f, PromptFadeTime));
+        StopCoroutine(fadeIn);
+        StopCoroutine(fadeOut);
+
+        fadeIn = UIGroups.F(fadeOutGroup, 0, 1, PromptFadeTime);
+        fadeOut = UIGroups.F(Groups.Prompt, 0, -1, PromptFadeTime);
+
+        StartCoroutine(fadeIn);
+        yield return StartCoroutine(fadeOut);
         gameObject.SetActive(false);
     }
 }

@@ -144,10 +144,10 @@ public class Scene : MonoBehaviour {
     }
 
 
-    public static void SetSelectedGameObject()
+    public static void SetSelectedGameObject(bool highlightSelected = true)
     {
         system.SetSelectedGameObject(currentSelectedGameObject, new BaseEventData(system));
-        currentSelectedGameObject.GetComponent<UIEvent>().OnGameObjectSelect();
+        if(highlightSelected)currentSelectedGameObject.GetComponent<UIEvent>().OnGameObjectSelect();
     }
 
     private void SetSelectableGameObject(SelectableDirection selectableDirection)

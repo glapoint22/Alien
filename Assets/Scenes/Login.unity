@@ -436,6 +436,26 @@ Prefab:
       propertyPath: m_InputType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012826686672, guid: b0186dc535006e24988b7976e4b89280,
+        type: 2}
+      propertyPath: disabledAlpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012180279624, guid: b0186dc535006e24988b7976e4b89280,
+        type: 2}
+      propertyPath: disabledAlpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010908278148, guid: b0186dc535006e24988b7976e4b89280,
+        type: 2}
+      propertyPath: disabledAlpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013649356158, guid: b0186dc535006e24988b7976e4b89280,
+        type: 2}
+      propertyPath: disabledAlpha
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0186dc535006e24988b7976e4b89280, type: 2}
   m_IsPrefabParent: 0

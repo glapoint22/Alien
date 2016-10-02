@@ -20,7 +20,7 @@ public class UIGroups : UI
 
         uiTheme = GameObject.Find("UI Themes").GetComponent<UIThemes>().uiTheme;
 
-        for(int i = 0; i < uiGroup.Length; i++)
+        for (int i = 0; i < uiGroup.Length; i++)
         {
             uiGroup[i].elements = new List<UIGraphic>();
         }
@@ -39,7 +39,7 @@ public class UIGroups : UI
         instance.StopCoroutine(fadeIn);
     }
 
-    
+
 
     public static IEnumerator FadeOut(Groups group, float minAlpha, float fadeTime)
     {
@@ -77,13 +77,13 @@ public class UIGroups : UI
                     //Test to see which alpha we are using
                     GameObject elementGameObject = uiGroup[index].elements[i].transform.parent.gameObject;
                     float alpha;
-                    
+
                     if (elementGameObject == Scene.currentSelectedGameObject)
                     {
                         UIInteractiveGraphic element = (UIInteractiveGraphic)uiGroup[index].elements[i];
                         alpha = element.selectAlpha;
                     }
-                    else if(elementGameObject.tag == "Selectable")
+                    else if (elementGameObject.tag == "Selectable")
                     {
                         Selectable selectable = elementGameObject.GetComponent<Selectable>();
                         if (!selectable.interactable)
@@ -127,6 +127,95 @@ public class UIGroups : UI
         }
 
     }
+
+
+
+
+
+
+
+
+
+
+    public static IEnumerator F(Groups group, float minAlpha, int direction, float fadeTime)
+    {
+        float time = 0;
+        int index = (int)group;
+        int elementCount = uiGroup[index].elements.Count;
+        float[] speed = new float[elementCount];
+        float[] maxAlpha = new float[elementCount];
+        float currentAlpha;
+
+        while (time < fadeTime)
+        {
+            time += 1 * Time.deltaTime;
+
+            //Loop through all the elements
+            for (int i = 0; i < elementCount; i++)
+            {
+                //Calcualte the speed and get the max alpha for this element
+                if (speed[i] == 0)
+                {
+                    //Test to see which alpha we are using
+                    GameObject elementGameObject = uiGroup[index].elements[i].transform.parent.gameObject;
+                    float alpha;
+
+                    if (elementGameObject == Scene.currentSelectedGameObject)
+                    {
+                        UIInteractiveGraphic element = (UIInteractiveGraphic)uiGroup[index].elements[i];
+                        alpha = element.selectAlpha;
+                    }
+                    else if (elementGameObject.tag == "Selectable")
+                    {
+                        Selectable selectable = elementGameObject.GetComponent<Selectable>();
+                        if (!selectable.interactable)
+                        {
+                            UIInteractiveGraphic element = (UIInteractiveGraphic)uiGroup[index].elements[i];
+                            alpha = element.disabledAlpha;
+                        }
+                        else
+                        {
+                            alpha = uiGroup[index].elements[i].alpha;
+                        }
+                    }
+                    else
+                    {
+                        alpha = uiGroup[index].elements[i].alpha;
+                    }
+                    maxAlpha[i] = direction == -1 ? 1 : alpha;
+
+
+                    //Get the distance between the current alpha and the alpha we need to get to
+                    float distance;
+                    if (direction == 1)
+                    {
+                        distance = maxAlpha[i] - uiGroup[index].elements[i].graphic.color.a;
+                    }
+                    else
+                    {
+                        distance = uiGroup[index].elements[i].graphic.color.a - minAlpha;
+                    }
+
+                    //Calculate the speed
+                    speed[i] = distance / fadeTime;
+                }
+
+                //Calculate and assign the current alpha for this element
+                currentAlpha = Mathf.Clamp(uiGroup[index].elements[i].graphic.color.a + (speed[i] * direction * Time.deltaTime), minAlpha, maxAlpha[i]);
+                uiGroup[index].elements[i].graphic.color = GetUIColor(uiGroup[index].elements[i].graphic.color, currentAlpha);
+            }
+
+            yield return null;
+        }
+
+    }
+
+
+
+
+
+
+
 
     public static void SetColor(Groups group, int themeIndex, bool isTransparent = false)
     {
