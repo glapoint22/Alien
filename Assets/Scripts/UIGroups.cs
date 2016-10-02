@@ -43,7 +43,7 @@ public class UIGroups : UI
                     //Test to see which alpha we are using
                     GameObject elementGameObject = uiGroup[index].elements[i].transform.parent.gameObject;
                     float alpha;
-
+                    
                     if (elementGameObject == Scene.currentSelectedGameObject)
                     {
                         UIInteractiveGraphic element = (UIInteractiveGraphic)uiGroup[index].elements[i];
@@ -81,12 +81,24 @@ public class UIGroups : UI
                     }
 
                     //Calculate the speed
-                    speed[i] = distance / fadeTime;
+                    if(distance > 0)
+                    {
+                        speed[i] = distance / fadeTime;
+                    }
+                    else
+                    {
+                        speed[i] = Mathf.Infinity;
+                    }
+                    
                 }
 
                 //Calculate and assign the current alpha for this element
-                currentAlpha = Mathf.Clamp(uiGroup[index].elements[i].graphic.color.a + (speed[i] * direction * Time.deltaTime), minAlpha, maxAlpha[i]);
-                uiGroup[index].elements[i].graphic.color = GetUIColor(uiGroup[index].elements[i].graphic.color, currentAlpha);
+                if(speed[i] != Mathf.Infinity)
+                {
+                    currentAlpha = Mathf.Clamp(uiGroup[index].elements[i].graphic.color.a + (speed[i] * direction * Time.deltaTime), minAlpha, maxAlpha[i]);
+                    uiGroup[index].elements[i].graphic.color = GetUIColor(uiGroup[index].elements[i].graphic.color, currentAlpha);
+                }
+                
             }
 
             yield return null;
