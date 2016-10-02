@@ -6,4 +6,5 @@ public class GameManager : MonoBehaviour {
     public static string key = "mviGtw1/fLj6eEc3mIo1w2NRCrDVZsMS4VGSMFTmMdc=";
     public static string iv = "7WMJTktvP4cDhdtThDK3LSu46y3DzksQ6Cj9+I2Bwxk=";
     public static string assetBundlesURL = "zorioth/AssetBundles/";
+    //Gumpy's Ice Cream!
 }
