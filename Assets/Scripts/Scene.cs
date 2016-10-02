@@ -32,7 +32,7 @@ public class Scene : MonoBehaviour {
 
         //Fade in the scene
         UIGroups.SetColor(sceneGroup, colorIndex, true);
-        StartCoroutine(UIGroups.FadeIn(sceneGroup, 0.5f));
+        StartCoroutine(UIGroups.Fade(sceneGroup, 0, 1, 0.5f));
     }
 
 

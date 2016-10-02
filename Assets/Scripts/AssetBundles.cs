@@ -138,7 +138,7 @@ public class AssetBundles {
         if (assetBundlesToDownload.Count > 0)
         {
             //Fade in the progress bar
-            yield return UIGroups.FadeIn(Groups.ProgressBar, 0.5f);
+            yield return UIGroups.Fade(Groups.ProgressBar, 0, 1, 0.5f);
 
             //Download the asset bundles
             yield return Download();
@@ -147,7 +147,7 @@ public class AssetBundles {
             yield return new WaitForSeconds(1);
 
             //Fade out the progress bar
-            yield return UIGroups.FadeOut(Groups.ProgressBar, 0, 0.5f);
+            yield return UIGroups.Fade(Groups.ProgressBar, 0, -1, 0.5f);
 
             progressBar.progress = 0;
         }
@@ -193,7 +193,7 @@ public class AssetBundles {
 
 
         //Fade in the progress bar
-        if(showProgress) yield return UIGroups.FadeIn(Groups.ProgressBar, 0.5f);
+        if(showProgress) yield return UIGroups.Fade(Groups.ProgressBar, 0, 1, 0.5f);
 
 
         //Get all the dependencies for this scene

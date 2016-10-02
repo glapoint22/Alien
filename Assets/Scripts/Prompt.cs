@@ -4,16 +4,16 @@ using UnityEngine.Events;
 using System.Collections;
 
 public class Prompt : MonoBehaviour {
-    private UIPrompt prompt;
-    private Groups fadeOutGroup;
-    private float PromptFadeTime = 0.25f;
     public bool isVisible;
+    private UIPrompt prompt;
+    private Groups fadeGroup;
+    private float PromptFadeTime = 0.25f;
+    private IEnumerator fadeOut;
+    private IEnumerator fadeIn;
 
+    //Delegate for canceling the prompt
     public delegate void CancelDelegate();
     public CancelDelegate cancelDelegate;
-
-    IEnumerator fadeOut;
-    IEnumerator fadeIn;
 
     public static Prompt instance
     {
@@ -32,12 +32,12 @@ public class Prompt : MonoBehaviour {
         
     }
 
-    public void Initialize(Groups fadeOutGroup)
+    public void Initialize(Groups fadeGroup)
     {
         GameObject canvas = GameObject.Find("Canvas");
         transform.SetParent(canvas.transform, false);
         gameObject.SetActive(false);
-        this.fadeOutGroup = fadeOutGroup;
+        this.fadeGroup = fadeGroup;
     }
 
     public void Show(PromptInfo promptInfo)
@@ -85,13 +85,15 @@ public class Prompt : MonoBehaviour {
             prompt.button2.buttonComponent.onClick.AddListener(Hide);
         }
 
-        isVisible = true;
 
-        fadeIn = UIGroups.F(Groups.Prompt, 0, 1, PromptFadeTime);
-        fadeOut = UIGroups.F(fadeOutGroup, 0.05f, -1, PromptFadeTime);
-
+        //Fade in the prompt and fade out the scene
+        fadeIn = UIGroups.Fade(Groups.Prompt, 0, 1, PromptFadeTime);
+        fadeOut = UIGroups.Fade(fadeGroup, 0.05f, -1, PromptFadeTime);
         StartCoroutine(fadeIn);
         StartCoroutine(fadeOut);
+
+        //Flag that the prompt is showing
+        isVisible = true;
     }
 
 
@@ -110,14 +112,17 @@ public class Prompt : MonoBehaviour {
 
     private IEnumerator HidePrompt()
     {
+        //Stop the fades if they are still running
         StopCoroutine(fadeIn);
         StopCoroutine(fadeOut);
 
-        fadeIn = UIGroups.F(fadeOutGroup, 0, 1, PromptFadeTime);
-        fadeOut = UIGroups.F(Groups.Prompt, 0, -1, PromptFadeTime);
-
+        //Fade out the prompt and fade in the scene
+        fadeIn = UIGroups.Fade(fadeGroup, 0, 1, PromptFadeTime);
+        fadeOut = UIGroups.Fade(Groups.Prompt, 0, -1, PromptFadeTime);
         StartCoroutine(fadeIn);
         yield return StartCoroutine(fadeOut);
+
+        //Disable the prompt
         gameObject.SetActive(false);
     }
 }
