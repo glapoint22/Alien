@@ -12,6 +12,7 @@ public class UIDrag : UIInteractive, IBeginDragHandler, IDragHandler
 
     private float xOffset;
     private float yOffset;
+    private bool cursorSet;
 
     public override void OnDown(UIInteractiveGraphic child)
     {
@@ -35,18 +36,33 @@ public class UIDrag : UIInteractive, IBeginDragHandler, IDragHandler
     public override void OnOver(UIInteractiveGraphic child)
     {
         base.OnOver(child);
-        Cursor.SetCursor(dragCursor, new Vector2(10, 10), CursorMode.Auto);
+        if (!cursorSet)
+        {
+            Cursor.SetCursor(dragCursor, new Vector2(10, 10), CursorMode.Auto);
+            cursorSet = true;
+        }
+        
     }
 
     public override void OnOut(UIInteractiveGraphic child)
     {
         base.OnOut(child);
-        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        if (cursorSet)
+        {
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+            cursorSet = false;
+        }
+        
     }
 
     public override void OnOutside(UIInteractiveGraphic child)
     {
         base.OnOutside(child);
-        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        if (cursorSet)
+        {
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+            cursorSet = false;
+        }
+            
     }
 }
