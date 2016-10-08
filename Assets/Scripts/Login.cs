@@ -56,7 +56,20 @@ public class Login : Scene {
 
     void Start()
     {
-        SetScene(Groups.Login, 2, GameObject.Find("Account InputField"));
+        GameObject focusGameObject;
+
+        //Figure out which input field to give the focus to
+        if(accountNameInputField.text == string.Empty)
+        {
+            focusGameObject = GameObject.Find("Account InputField");
+        }
+        else
+        {
+            focusGameObject = GameObject.Find("Password InputField");
+        }
+
+        //Set the scene
+        SetScene(Groups.Login, 2, focusGameObject);
 
         //Assign the text
         accountLabel.text = Localization.key.accountLabel;
