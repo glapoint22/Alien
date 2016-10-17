@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class Scene : MonoBehaviour {
     private static EventSystem system;
+    [System.NonSerialized]
     public Prompt prompt;
 
     public static GameObject currentSelectedGameObject = null;
@@ -17,18 +18,18 @@ public class Scene : MonoBehaviour {
 
     public void SetScene(Groups sceneGroup, int colorIndex, GameObject focusGameObject)
     {
-        //Initialize the prompt
-        prompt = Prompt.instance;
-        prompt.Initialize(sceneGroup);
-        UIGroups.SetColor(Groups.Prompt, colorIndex, true);
+        ////Initialize the prompt
+        //prompt = Prompt.instance;
+        //prompt.Initialize(sceneGroup);
+        //UIGroups.SetColor(Groups.Prompt, colorIndex, true);
 
 
         //Set the event system
-        defaultSelectedGameObject = focusGameObject;
-        system = EventSystem.current;
-        currentSelectedGameObject = defaultSelectedGameObject.GetComponent<Selectable>().gameObject;
-        system.SetSelectedGameObject(currentSelectedGameObject, new BaseEventData(system));
-        currentSelectedGameObject.GetComponent<UIEvent>().down = true;
+        //defaultSelectedGameObject = focusGameObject;
+        //system = EventSystem.current;
+        //currentSelectedGameObject = defaultSelectedGameObject.GetComponent<Selectable>().gameObject;
+        //system.SetSelectedGameObject(currentSelectedGameObject, new BaseEventData(system));
+        //currentSelectedGameObject.GetComponent<UIEvent>().down = true;
 
         //Fade in the scene
         UIGroups.SetColor(sceneGroup, colorIndex, true);
@@ -40,12 +41,12 @@ public class Scene : MonoBehaviour {
     void Update()
     {
 
-        //Deselect the current game object if it has lost focus
-        if(system.currentSelectedGameObject == null)
-        {
-            //currentSelectedGameObject.GetComponent<UIEvent>().OnGameObjectDeselect();
-            SetSelectedGameObject();
-        }
+        ////Deselect the current game object if it has lost focus
+        //if(system.currentSelectedGameObject == null)
+        //{
+        //    //currentSelectedGameObject.GetComponent<UIEvent>().OnGameObjectDeselect();
+        //    SetSelectedGameObject();
+        //}
 
 
 
