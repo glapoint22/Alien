@@ -199,6 +199,7 @@ ModelImporter:
     4300070: Ground.005
     4300072: Ground.007
     4300074: Ground.009
+    4300076: Sardinia
     6400000: Building1
     6400002: Building10
     6400004: Building11
@@ -245,7 +246,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
