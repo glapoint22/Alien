@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: d45813b43c8f50546a6e1d2819fe3bbd
-timeCreated: 1479040041
+guid: 322dd45ce751e8a4f9a374fff46e2d1c
+timeCreated: 1484850871
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,9 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Ground1
-    4300002: Ground
-    6400000: //RootNode
+    4300000: Building8a
   materials:
     importMaterials: 1
     materialName: 0
@@ -38,7 +36,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -52,8 +50,8 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 80
-    normalImportMode: 1
+    normalSmoothAngle: 60
+    normalImportMode: 0
     tangentImportMode: 3
   importAnimation: 1
   copyAvatar: 0
