@@ -6,10 +6,34 @@ ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Building8a
+    100004: Building8a.001
+    100006: Building8b
+    100008: Building8b.001
+    100010: Sardinia
     400000: //RootNode
+    400002: Building8a
+    400004: Building8a.001
+    400006: Building8b
+    400008: Building8b.001
+    400010: Sardinia
     2300000: //RootNode
+    2300002: Building8a
+    2300004: Building8a.001
+    2300006: Building8b
+    2300008: Building8b.001
+    2300010: Sardinia
     3300000: //RootNode
+    3300002: Building8a
+    3300004: Building8a.001
+    3300006: Building8b
+    3300008: Building8b.001
+    3300010: Sardinia
     4300000: Building8a
+    4300002: Building8a.001
+    4300004: Building8b.001
+    4300006: Building8b
+    4300008: Sardinia
   materials:
     importMaterials: 1
     materialName: 0
