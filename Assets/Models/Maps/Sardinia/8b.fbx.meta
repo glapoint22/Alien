@@ -6,11 +6,86 @@ ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Building8a
+    100004: Building8a.001
+    100006: Building8b
+    100008: Building8b Color IDs
+    100010: Building8b.001
+    100012: Building8b.002
+    100014: Building8b.003
+    100016: Building8b.004
+    100018: Building8b.005
+    100020: Building8b_high
+    100022: Building8b_high_MeshPart0
+    100024: Building8b_high_MeshPart1
+    100026: Building8b_high_MeshPart2
+    100028: Building8b_high_MeshPart3
+    100030: Building8b_old
+    100032: Sardinia
     400000: //RootNode
+    400002: Building8a
+    400004: Building8a.001
+    400006: Building8b
+    400008: Building8b Color IDs
+    400010: Building8b.001
+    400012: Building8b.002
+    400014: Building8b.003
+    400016: Building8b.004
+    400018: Building8b.005
+    400020: Building8b_high
+    400022: Building8b_high_MeshPart0
+    400024: Building8b_high_MeshPart1
+    400026: Building8b_high_MeshPart2
+    400028: Building8b_high_MeshPart3
+    400030: Building8b_old
+    400032: Sardinia
     2300000: //RootNode
+    2300002: Building8a
+    2300004: Building8a.001
+    2300006: Building8b
+    2300008: Building8b Color IDs
+    2300010: Building8b.001
+    2300012: Building8b.002
+    2300014: Building8b.003
+    2300016: Building8b.004
+    2300018: Building8b.005
+    2300020: Building8b_high_MeshPart0
+    2300022: Building8b_high_MeshPart1
+    2300024: Building8b_high_MeshPart2
+    2300026: Building8b_high_MeshPart3
+    2300028: Building8b_old
+    2300030: Sardinia
     3300000: //RootNode
+    3300002: Building8a
+    3300004: Building8a.001
+    3300006: Building8b
+    3300008: Building8b Color IDs
+    3300010: Building8b.001
+    3300012: Building8b.002
+    3300014: Building8b.003
+    3300016: Building8b.004
+    3300018: Building8b.005
+    3300020: Building8b_high_MeshPart0
+    3300022: Building8b_high_MeshPart1
+    3300024: Building8b_high_MeshPart2
+    3300026: Building8b_high_MeshPart3
+    3300028: Building8b_old
+    3300030: Sardinia
     4300000: Building8b
     4300002: Building8b.001
+    4300004: Building8b.005
+    4300006: Building8b.004
+    4300008: Building8b_high_MeshPart0
+    4300010: Building8b_high_MeshPart1
+    4300012: Building8b_high_MeshPart2
+    4300014: Building8b_high_MeshPart3
+    4300016: Building8a.001
+    4300018: Building8b.003
+    4300020: Building8b.002
+    4300022: Building8b Color IDs
+    4300024: Building8b_old
+    4300026: Building8a
+    4300028: Sardinia
   materials:
     importMaterials: 1
     materialName: 0
@@ -57,6 +132,7 @@ ModelImporter:
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -67,7 +143,10 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 0
   humanoidOversampling: 1
